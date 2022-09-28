@@ -1,0 +1,68 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Objects/BackDrop/Layer1.png" type="Texture" id=1]
+[ext_resource path="res://Objects/BackDrop/Layer4.png" type="Texture" id=2]
+[ext_resource path="res://Objects/BackDrop/Layer2.png" type="Texture" id=3]
+[ext_resource path="res://Objects/BackDrop/Layer3.png" type="Texture" id=4]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+follow_viewport_enable = true
+scroll_ignore_camera_zoom = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_scale = Vector2( 0.3, 1 )
+motion_offset = Vector2( 0.01, 0 )
+motion_mirroring = Vector2( 318, 0 )
+
+[node name="Layer1" type="Sprite" parent="ParallaxLayer"]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Layer2" type="Sprite" parent="ParallaxLayer"]
+texture = ExtResource( 3 )
+centered = false
+
+[node name="Layer3" type="Sprite" parent="ParallaxLayer"]
+texture = ExtResource( 4 )
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
+motion_scale = Vector2( 0.3, 1 )
+motion_offset = Vector2( 0.01, 0 )
+motion_mirroring = Vector2( 318, 0 )
+
+[node name="Layer1" type="Sprite" parent="ParallaxLayer2"]
+position = Vector2( 159, 0 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Layer2" type="Sprite" parent="ParallaxLayer2"]
+position = Vector2( 159, 0 )
+texture = ExtResource( 3 )
+centered = false
+
+[node name="Layer3" type="Sprite" parent="ParallaxLayer2"]
+position = Vector2( 159, 0 )
+texture = ExtResource( 4 )
+centered = false
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="."]
+motion_scale = Vector2( 0.3, 1 )
+motion_offset = Vector2( 0.01, 0 )
+motion_mirroring = Vector2( 318, 0 )
+
+[node name="Layer1" type="Sprite" parent="ParallaxLayer4"]
+modulate = Color( 1, 1, 1, 0.156863 )
+texture = ExtResource( 2 )
+centered = false
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="."]
+motion_scale = Vector2( 0.3, 1 )
+motion_offset = Vector2( 0.01, 0 )
+motion_mirroring = Vector2( 318, 0 )
+
+[node name="Layer1" type="Sprite" parent="ParallaxLayer5"]
+modulate = Color( 1, 1, 1, 0.156863 )
+position = Vector2( 159, 0 )
+texture = ExtResource( 2 )
+centered = false
