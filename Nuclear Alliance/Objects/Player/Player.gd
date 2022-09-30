@@ -2,15 +2,16 @@ extends KinematicBody2D
 
 # Declaires variables
 
-onready var HitBox = $CollisionShape2D
+onready var hitBox = $CollisionShape2D
 onready var Sprite = $Sprite
 var velocity = Vector2(0,0)
 export var Speed = 150.0
-export var MaxSpeed = 300.0
+export var maxSpeed = 300.0
 export var Acceleration = 0.6
 export var player = 0
-var GameMode = false
+var gameMode = false
 var followCam : Camera2D
+var gameHovered = 0
 
 
 func _ready():
@@ -24,13 +25,14 @@ func _ready():
 	elif player == 2:
 		followCam = get_node("/root/SplitscreenComponent/GridContainer/container2/viewport2/Camera2D")
 	$"Minigames/MinigameBase".attachedPlayer = player
+	$"Minigames/Minigame1".attachedPlayer = player
 	
 # Things that happen every second
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	
 	# Detects Keys for Left/Right
-	if GameMode == false:
+	if gameMode == false:
 		if Input.is_action_pressed("Right1"):
 			if player == 1:
 				velocity.x = lerp(velocity.x,Speed,Acceleration)
@@ -64,31 +66,23 @@ func _physics_process(delta):
 	velocity.x = lerp(velocity.x,0,0.15)
 	followCam.global_position = global_position + Vector2(0,-11)
 	
+	
+	# Handels player Opening Minigames
+	
 	if Input.is_action_just_pressed("Interact1"):
-		if (player == 1 && GameMode == false):
-			get_tree().call_group("Minigame","Game",0,player)
-			GameMode = true
-			$CollisionShape2D.disabled = true
-		elif (player == 1 && GameMode == true):
-			get_tree().call_group("Minigame","Quit",player)
-			GameMode = false
-			$CollisionShape2D.disabled = false
-			Input.action_release("Left1")
-			Input.action_release("Right1")
+		if (player == 1 &&  gameHovered != 0):
+			get_tree().call_group("Minigame","Game",1,player)
+			gameHovered = 0
+			gameMode = true
+			
 	if Input.is_action_just_pressed("Interact2"):
-		if (player == 2 && GameMode == false):
-			get_tree().call_group("Minigame","Game",0,player)
-			GameMode = true
-			$CollisionShape2D.disabled = true
-		elif (player == 2 && GameMode == true):
-			get_tree().call_group("Minigame","Quit",player)
-			GameMode = false
-			$CollisionShape2D.disabled = false
-			Input.action_press("Left2")
-			Input.action_press("Right2")
-			Input.action_release("Left2")
-			Input.action_release("Right2")
-
-		
+		if (player == 2 && gameHovered != 0):
+			get_tree().call_group("Minigame","Game",1,player)
+			gameMode = true
 	
-	
+func Play(connectingGame, connectingPlayer):
+	if connectingPlayer == player:
+		gameHovered = connectingGame
+func Quit(connectingGame):
+	if connectingGame == player:
+		gameMode = false

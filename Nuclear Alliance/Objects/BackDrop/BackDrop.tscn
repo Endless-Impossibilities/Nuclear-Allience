@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Objects/BackDrop/Layer1.png" type="Texture" id=1]
 [ext_resource path="res://Objects/BackDrop/Layer4.png" type="Texture" id=2]
 [ext_resource path="res://Objects/BackDrop/Layer2.png" type="Texture" id=3]
 [ext_resource path="res://Objects/BackDrop/Layer3.png" type="Texture" id=4]
+[ext_resource path="res://Objects/BackDrop/Lights.gd" type="Script" id=5]
 
 [node name="ParallaxBackground" type="ParallaxBackground"]
 follow_viewport_enable = true
@@ -52,9 +53,10 @@ motion_offset = Vector2( 0.01, 0 )
 motion_mirroring = Vector2( 318, 0 )
 
 [node name="Layer1" type="Sprite" parent="ParallaxLayer4"]
-modulate = Color( 1, 1, 1, 0.156863 )
+modulate = Color( 1, 1, 1, 0.392157 )
 texture = ExtResource( 2 )
 centered = false
+script = ExtResource( 5 )
 
 [node name="ParallaxLayer5" type="ParallaxLayer" parent="."]
 motion_scale = Vector2( 0.3, 1 )
@@ -62,7 +64,8 @@ motion_offset = Vector2( 0.01, 0 )
 motion_mirroring = Vector2( 318, 0 )
 
 [node name="Layer1" type="Sprite" parent="ParallaxLayer5"]
-modulate = Color( 1, 1, 1, 0.156863 )
+modulate = Color( 1, 1, 1, 0.392157 )
 position = Vector2( 159, 0 )
 texture = ExtResource( 2 )
 centered = false
+script = ExtResource( 5 )
