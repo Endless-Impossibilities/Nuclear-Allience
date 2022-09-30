@@ -31,9 +31,11 @@ func _physics_process(delta):
 			if Input.is_action_pressed("Interact1"):
 				Soddering = true
 				$CPUParticles2D.emitting = true
+				$CPUParticles2D2.emitting = true
 			else:
 				Soddering = false
 				$CPUParticles2D.emitting = false
+				$CPUParticles2D2.emitting = false
 	
 		if (attachedPlayer == 2):
 			if Input.is_action_pressed("Left2"):

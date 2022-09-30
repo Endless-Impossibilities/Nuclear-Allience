@@ -1,12 +1,16 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Rooms/Main Room.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Rooms/SplitScreenRenderer.gd" type="Script" id=2]
 [ext_resource path="res://Objects/BackDrop/BackDrop.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Objects/BackDrop/Border.png" type="Texture" id=4]
+[ext_resource path="res://Rooms/CanvasModulate.gd" type="Script" id=5]
 
 [node name="SplitscreenComponent" type="CanvasLayer"]
 script = ExtResource( 2 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." groups=["Lighting"]]
+script = ExtResource( 5 )
 
 [node name="Border" type="Sprite" parent="."]
 position = Vector2( 160, 62 )
