@@ -7,9 +7,9 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 4 ) ],
+"frames": [ ExtResource( 3 ) ],
 "loop": true,
-"name": "Idle",
+"name": "Broken",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 2 ) ],
@@ -17,9 +17,9 @@ animations = [ {
 "name": "Hovered",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ) ],
+"frames": [ ExtResource( 4 ) ],
 "loop": true,
-"name": "Broken",
+"name": "Idle",
 "speed": 5.0
 } ]
 

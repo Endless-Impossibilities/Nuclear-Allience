@@ -78,6 +78,7 @@ func _physics_process(_delta):
 	if Input.is_action_just_pressed("Interact2"):
 		if (player == 2 && gameHovered != 0):
 			get_tree().call_group("Minigame","Game",1,player)
+			gameHovered = 0
 			gameMode = true
 	
 func Play(connectingGame, connectingPlayer):

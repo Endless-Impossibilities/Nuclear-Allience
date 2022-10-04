@@ -72,5 +72,5 @@ smoothing_enabled = true
 smoothing_speed = 10.0
 
 [node name="ParallaxBackground" parent="GridContainer/container2/viewport2" instance=ExtResource( 3 )]
-offset = Vector2( 0, 182 )
-transform = Transform2D( 1, 0, 0, 1, 0, 182 )
+offset = Vector2( 0, 216 )
+transform = Transform2D( 1, 0, 0, 1, 0, 216 )
