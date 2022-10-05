@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Objects/Letters/Off/LettersOff1.png" type="Texture" id=1]
+[ext_resource path="res://Objects/Letters/LetterFont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Objects/Letters/On/LettersOn1.png" type="Texture" id=3]
+[ext_resource path="res://Objects/Letters/Letter.gd" type="Script" id=4]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "Off",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "On",
+"speed": 5.0
+} ]
+
+[sub_resource type="Theme" id=2]
+default_font = ExtResource( 2 )
+
+[node name="Letter" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="Up1" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "Off"
+
+[node name="Label" type="Label" parent="."]
+modulate = Color( 0.435294, 0.643137, 0.439216, 1 )
+margin_left = -5.0
+margin_top = -21.0
+margin_right = 9.0
+rect_scale = Vector2( 2, 2 )
+theme = SubResource( 2 )
+custom_fonts/font = ExtResource( 2 )
+text = "w"
+valign = 1
+uppercase = true

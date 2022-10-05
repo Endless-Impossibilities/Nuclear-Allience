@@ -23,6 +23,11 @@ func Game(Game, callingPlayer):
 		breaksRemaining = 3
 		calledPlayer = callingPlayer
 		
+		if calledPlayer == 1:
+			$Overlay1.visible = true
+		if calledPlayer == 2:
+			$Overlay2.visible = true
+		
 		$Break1.position.x = rand_range(-16,9)
 		$Break2.position.x = rand_range(-16,9)
 		$Break3.position.x = rand_range(-16,9)

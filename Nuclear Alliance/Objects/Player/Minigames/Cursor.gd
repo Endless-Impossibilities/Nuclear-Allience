@@ -50,9 +50,11 @@ func _physics_process(delta):
 			if Input.is_action_pressed("Interact2"):
 				Soddering = true
 				$CPUParticles2D.emitting = true
+				$CPUParticles2D2.emitting = true
 			else:
 				Soddering = false
 				$CPUParticles2D.emitting = false
+				$CPUParticles2D2.emitting = false
 	if Soddering == true && Fixing == true:
 		breakFixing.SelfDestruct()
 		$"..".Fix()
