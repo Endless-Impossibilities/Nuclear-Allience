@@ -18,7 +18,7 @@ func _physics_process(delta):
 func Game(Game, callingPlayer):
 	if (Game == Self && callingPlayer == attachedPlayer):
 		get_tree().call_group("PwrBxSM","Running",attachedPlayer)
-		self.position = Vector2(0,0)
+		self.position = Vector2(-10,0)
 		$Cursor.active = true
 		breaksRemaining = 3
 		calledPlayer = callingPlayer
