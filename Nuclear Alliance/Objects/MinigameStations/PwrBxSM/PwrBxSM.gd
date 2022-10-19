@@ -25,7 +25,10 @@ func _on_Area2D_body_entered(body):
 
 
 func _on_Area2D_body_exited(body):
-		$AnimatedSprite.play("Idle")
+		if broken == false:
+			$AnimatedSprite.play("Idle")
+		if broken == true:
+			$AnimatedSprite.play("Broken")
 		get_tree().call_group("Player","Play",0, player)
 
 #Makes it so the player can't activate the game by marking it as active
@@ -33,18 +36,34 @@ func Running():
 	active = true
 	
 #"Fixes" the game station and marks it as no longer active
-func End():
-	active = false
-	broken = false
+func End(callingPlayer):
+	if callingPlayer == player:
+		active = false
+		broken = false
+		$Timer.start()
+		print($Timer.time_left)
+		if player == 1:
+			get_tree().call_group("HUD","Power",true,1)
+		if player == 2:
+			get_tree().call_group("HUD","Power",true,2)
 	
 func _physics_process(delta):
 	if active == true:
 		$Timer.time_left = timerLength
+		
+
+			
 
 
 
 
 func _on_Timer_timeout():
-	timerLength -= 5
-	$Timer.time_left = timerLength
-	broken == true
+	$AnimatedSprite.play("Broken")
+	timerLength -= 2
+	$Timer.stop()
+	$Timer.wait_time = timerLength
+	broken = true
+	if player == 1:
+		get_tree().call_group("HUD","Power",false,1)
+	if player == 2:
+		get_tree().call_group("HUD","Power",false,2)

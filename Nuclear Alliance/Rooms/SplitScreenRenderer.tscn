@@ -21,9 +21,6 @@ texture = ExtResource( 4 )
 [node name="GridContainer" type="GridContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="container1" type="ViewportContainer" parent="GridContainer"]
 margin_right = 160.0
@@ -73,6 +70,7 @@ smoothing_enabled = true
 smoothing_speed = 10.0
 
 [node name="HUD" parent="GridContainer/container2/viewport2/Camera2D" instance=ExtResource( 6 )]
+player = 2
 
 [node name="ParallaxBackground" parent="GridContainer/container2/viewport2" instance=ExtResource( 3 )]
 offset = Vector2( 0, 216 )
