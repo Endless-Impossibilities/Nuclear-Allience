@@ -47,7 +47,7 @@ func End(callingPlayer):
 		if player == 2:
 			get_tree().call_group("HUD","Power",true,2)
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	if active == true:
 		$Timer.time_left = timerLength
 		
