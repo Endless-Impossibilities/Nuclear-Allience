@@ -16,7 +16,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-HudVariables="*res://Objects/UI/HUD/HUDVariables.gd"
+Globals="*res://Globals.gd"
 
 [display]
 

@@ -2,7 +2,8 @@ extends CanvasLayer
 
 #Variables for weather certain minigames are ready#
 var power = true
-var water = true
+var water = 0.0
+var maxWater = Globals.MaxWtr
 var pressure = true
 
 #Variables for random movement for power#
@@ -18,6 +19,9 @@ var powRng = RandomNumberGenerator.new()
 #Variable for which player this is attached to#
 export var player = 0
 
+
+var waterPercentage = 0.0
+
 func _ready():
 	randomize()
 
@@ -25,11 +29,11 @@ func _ready():
 func _physics_process(delta):
 ## Updates weather minigame stations are ready ##
 	if player == 1:
-		water = HudVariables.Water1
-		pressure = HudVariables.Pressure1
+		water = Globals.Wtr1
+
 	if player == 2:
-		water = HudVariables.Water2
-		pressure = HudVariables.Pressure2
+		water = Globals.Wtr2
+
 		
 ## Updates hud elements for powerbox ## 
 	# Update bar 1 #
@@ -55,9 +59,16 @@ func _physics_process(delta):
 		$Power/TextureRect2.margin_top = lerp($Power/TextureRect2.margin_top, 7, 0.05)
 		$Power/TextureRect3.margin_top = lerp($Power/TextureRect3.margin_top, 7, 0.05)
 		$Power/TextureRect4.margin_top = lerp($Power/TextureRect4.margin_top, 7, 0.05)
-		
-	print(power)
-	print(player)
+	
+	waterPercentage = water / maxWater
+	
+	#21-32
+	$Water/Water.position.y = 32 + ((waterPercentage * 11) * -1)
+	
+	print(water)
+	print(maxWater)
+	print($Water/Water.position.y)
+	
 	
 func Power(incomingState,incomingPlayer):
 	if incomingPlayer == player:

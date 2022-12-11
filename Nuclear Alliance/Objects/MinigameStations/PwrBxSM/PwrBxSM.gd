@@ -41,7 +41,6 @@ func End(callingPlayer):
 		active = false
 		broken = false
 		$Timer.start()
-		print($Timer.time_left)
 		if player == 1:
 			get_tree().call_group("HUD","Power",true,1)
 		if player == 2:

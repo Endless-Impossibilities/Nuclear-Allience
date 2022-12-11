@@ -39,3 +39,6 @@ custom_fonts/font = ExtResource( 2 )
 text = "w"
 valign = 1
 uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

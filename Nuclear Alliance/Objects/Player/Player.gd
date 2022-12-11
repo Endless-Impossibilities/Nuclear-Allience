@@ -41,6 +41,7 @@ func _ready():
 ##### ADD A NEW LINE FOR NEW MINIGAMES #####
 	$"Minigames/MinigameBase".attachedPlayer = player
 	$"Minigames/Minigame1".attachedPlayer = player
+	$"Minigames/Minigame2".attachedPlayer = player
 	
 
 ### Everything that happens on a every-frame basis ###
@@ -86,13 +87,13 @@ func _physics_process(_delta):
 ## Handels player Opening Minigames ##
 	if Input.is_action_just_pressed("Interact1"):
 		if (player == 1 &&  gameHovered != 0):
-			get_tree().call_group("Minigame","Game",1,player)
+			get_tree().call_group("Minigame","Game",gameHovered,player)
 			gameHovered = 0
 			gameMode = true
 			
 	if Input.is_action_just_pressed("Interact2"):
 		if (player == 2 && gameHovered != 0):
-			get_tree().call_group("Minigame","Game",1,player)
+			get_tree().call_group("Minigame","Game",gameHovered,player)
 			gameHovered = 0
 			gameMode = true
 

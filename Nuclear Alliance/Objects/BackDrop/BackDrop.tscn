@@ -31,10 +31,22 @@ centered = false
 [node name="ParallaxLayer4" type="ParallaxLayer" parent="."]
 motion_scale = Vector2( 0.3, 1 )
 motion_offset = Vector2( 0.01, 0 )
-motion_mirroring = Vector2( 119.25, 0 )
+motion_mirroring = Vector2( 238.5, 0 )
 
 [node name="Layer1" type="Sprite" parent="ParallaxLayer4"]
 modulate = Color( 1, 1, 1, 0.392157 )
+texture = ExtResource( 2 )
+centered = false
+script = ExtResource( 5 )
+
+[node name="ParallaxLayer6" type="ParallaxLayer" parent="."]
+motion_scale = Vector2( 0.3, 1 )
+motion_offset = Vector2( 0.01, 0 )
+motion_mirroring = Vector2( 238.5, 0 )
+
+[node name="Layer1" type="Sprite" parent="ParallaxLayer6"]
+modulate = Color( 1, 1, 1, 0.392157 )
+position = Vector2( 119, 0 )
 texture = ExtResource( 2 )
 centered = false
 script = ExtResource( 5 )
