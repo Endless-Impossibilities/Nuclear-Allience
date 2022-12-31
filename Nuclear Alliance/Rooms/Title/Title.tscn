@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Rooms/Title/Play-On.png" type="Texture" id=1]
+[ext_resource path="res://Rooms/Title/Play-Off.png" type="Texture" id=2]
+[ext_resource path="res://Rooms/Title/Back.png" type="Texture" id=3]
+[ext_resource path="res://Rooms/Title/Tutorial-On.png" type="Texture" id=4]
+[ext_resource path="res://Rooms/Title/Settings-Off.png" type="Texture" id=5]
+[ext_resource path="res://Rooms/Title/Settings-On.png" type="Texture" id=6]
+[ext_resource path="res://Rooms/Title/Tutorial-Off.png" type="Texture" id=7]
+[ext_resource path="res://Rooms/Title/Play.gd" type="Script" id=8]
+
+[node name="Title" type="Node2D"]
+
+[node name="Back" type="Sprite" parent="."]
+position = Vector2( 80, 60 )
+texture = ExtResource( 3 )
+
+[node name="Play" type="TextureButton" parent="."]
+margin_left = 34.0
+margin_top = 48.0
+margin_right = 126.0
+margin_bottom = 70.0
+rect_clip_content = true
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 1 )
+texture_hover = ExtResource( 1 )
+expand = true
+stretch_mode = 2
+script = ExtResource( 8 )
+
+[node name="Play2" type="TextureButton" parent="."]
+margin_left = 34.0
+margin_top = 72.0
+margin_right = 195.0
+margin_bottom = 191.0
+disabled = true
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+texture_disabled = ExtResource( 4 )
+expand = true
+stretch_mode = 2
+
+[node name="Play3" type="TextureButton" parent="."]
+margin_left = 34.0
+margin_top = 96.0
+margin_right = 126.0
+margin_bottom = 120.0
+rect_clip_content = true
+disabled = true
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 6 )
+texture_disabled = ExtResource( 6 )
+expand = true
+stretch_mode = 2
+
+[connection signal="pressed" from="Play" to="Play" method="_on_Play_pressed"]
