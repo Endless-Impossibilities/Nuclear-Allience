@@ -9,7 +9,7 @@ var broken = false
 var active = false
 #The amount of time it takes for the station to be marked broken
 #Decreases by 5 each cycle
-var timerLength = 30
+var timerLength = 30 + rand_range(-3,3)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -58,7 +58,7 @@ func _physics_process(_delta):
 
 func _on_Timer_timeout():
 	$AnimatedSprite.play("Broken")
-	timerLength -= 2
+	timerLength -= 2 + rand_range(-1,1)
 	$Timer.stop()
 	$Timer.wait_time = timerLength
 	broken = true

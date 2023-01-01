@@ -1,5 +1,10 @@
 extends CanvasLayer
 
+#Variables for how much time is left till sabotage is active
+var sbtgeTime = 0.0
+var maxSbtgeTime = 30.0*60.0
+var sbtgePercent = 0.0
+
 #Variables for weather certain minigames are ready#
 var power = true
 var water = 0.0
@@ -64,16 +69,18 @@ func _physics_process(delta):
 	
 	#21-32
 	$Water/Water.position.y = 32 + ((waterPercentage * 11) * -1)
-	
-	print(water)
-	print(maxWater)
-	print($Water/Water.position.y)
-	
-	
+## Updates hud elements for Sabotage cooldown ##
+	sbtgePercent = sbtgeTime / maxSbtgeTime
+	$Sabotage/TextureRect.rect_scale.y = sbtgePercent
+
 func Power(incomingState,incomingPlayer):
 	if incomingPlayer == player:
 		power = incomingState
-	print(power)
+
+func sbtgeTimer(incomingTime, incomingPlayer):
+	if incomingPlayer == player:
+		sbtgeTime = incomingTime
+	print(sbtgeTime)
 
 
 func _on_PwrTime_timeout():

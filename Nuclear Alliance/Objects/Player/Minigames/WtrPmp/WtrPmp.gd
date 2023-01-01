@@ -24,7 +24,7 @@ func _physics_process(delta):
 	if $Meter/MeterControl.position.y >= 25:
 		$Meter/MeterControl.position.y = 25
 	else:
-		$Meter/MeterControl.position.y += .2
+		$Meter/MeterControl.position.y += .125
 	
 ## Tracks player input ##
 	if Input.is_action_just_pressed("Left" + str(attachedPlayer)) && locked == false && waitingOn == "Left":
@@ -43,12 +43,12 @@ func _physics_process(delta):
 		
 	if $Meter/MeterControl.position.y > $Meter/MeterMarker.position.y && $Meter/MeterControl.position.y < $Meter/MeterMarker.position.y +10:
 		if attachedPlayer == 1:
-			Globals.Wtr1 += Globals.MaxWtr * 0.005
+			Globals.Wtr1 += Globals.MaxWtr * 0.004
 			if Globals.Wtr1 >= Globals.MaxWtr:
 				Globals.Wtr1 = Globals.MaxWtr
 				Quit()
 		if attachedPlayer == 2:
-			Globals.Wtr2 += Globals.MaxWtr * 0.005
+			Globals.Wtr2 += Globals.MaxWtr * 0.004
 			if Globals.Wtr2 >= Globals.MaxWtr:
 				Globals.Wtr2 = Globals.MaxWtr
 				Quit()

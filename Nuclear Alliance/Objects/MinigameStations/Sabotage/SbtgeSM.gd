@@ -1,20 +1,18 @@
 extends Node2D
 
-
+var playerColliding = false
 #The player that this station is attached to
 export var player = 0
 #Weather or not the station is marked as active
-var broken = false
+var avalible = false
 #Weather or not the game is currently in use
 var active = false
-#The amount of time it takes for the station to be marked broken
-#Decreases by 5 each cycle
-var playerColliding = false
+#The amount of time it takes for the station to be available
+var time = 30*60
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	Globals.Wtr1 = Globals.MaxWtr
-	Globals.Wtr2 = Globals.MaxWtr
+	time = 1*60
 
 
 
@@ -24,36 +22,35 @@ func _on_Area2D_body_entered(body):
 
 
 func _on_Area2D_body_exited(body):
-	playerColliding = false
-	if broken == true:
-		get_tree().call_group("Player","Play",0, player)
+		playerColliding = false
+
 #Makes it so the player can't activate the game by marking it as active
 func Running():
 	active = true
-
-
-	
 	
 #"Fixes" the game station and marks it as no longer active
 func End(callingPlayer):
 	if callingPlayer == player:
 		active = false
-		broken = false
+		avalible = false
+		time = 30*60
+		if player == 1:
+			get_tree().call_group("HUD","Power",true,1)
+		if player == 2:
+			get_tree().call_group("HUD","Power",true,2)
 	
-func _physics_process(_delta):
-	if player == 1 && Globals.Wtr1 >= 0:
-		Globals.Wtr1 -= 1
-		if Globals.Wtr1 < Globals.MaxWtr *.75 && active == false:
-			broken = true
-	if player == 2 && Globals.Wtr1 >= 0:
-		Globals.Wtr2 -= 1
-		if Globals.Wtr2 < Globals.MaxWtr *.75 && active == false:
-			broken = true
-	if broken == true && active == false && playerColliding == true:
+func _physics_process(delta):
+	if time <= 0:
+		time = 0
+		avalible = true
+	else:
+		time -= 1
+	get_tree().call_group("HUD","sbtgeTimer",time,player)
+	if avalible == true && active == false && playerColliding == true:
 		$AnimatedSprite.play("Hovered")
 		get_tree().call_group("Player","Play",3,player)
 	if playerColliding == false:
-		if broken == false:
+		if avalible == false:
 				$AnimatedSprite.play("Idle")
 
 

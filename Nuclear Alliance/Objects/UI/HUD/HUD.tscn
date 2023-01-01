@@ -121,10 +121,12 @@ texture = ExtResource( 6 )
 
 [node name="TextureRect" type="TextureRect" parent="Sabotage"]
 modulate = Color( 1, 1, 1, 0.862745 )
-margin_left = 142.0
-margin_top = 39.0
-margin_right = 157.0
-margin_bottom = 54.0
+margin_left = 157.0
+margin_top = 54.0
+margin_right = 172.0
+margin_bottom = 69.0
+rect_rotation = 180.0
+rect_clip_content = true
 size_flags_horizontal = 2
 size_flags_vertical = 2
 texture = ExtResource( 1 )
