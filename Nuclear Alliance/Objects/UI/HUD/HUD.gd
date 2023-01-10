@@ -80,8 +80,6 @@ func Power(incomingState,incomingPlayer):
 func sbtgeTimer(incomingTime, incomingPlayer):
 	if incomingPlayer == player:
 		sbtgeTime = incomingTime
-	print(sbtgeTime)
-
 
 func _on_PwrTime_timeout():
 	powTrgt1 = rand_range(0,6)

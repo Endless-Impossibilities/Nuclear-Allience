@@ -51,9 +51,8 @@ func _physics_process(_delta):
 			broken = true
 	if broken == true && active == false && playerColliding == true:
 		$AnimatedSprite.play("Hovered")
-		get_tree().call_group("Player","Play",3,player)
-	if playerColliding == false:
-		if broken == false:
-				$AnimatedSprite.play("Idle")
+		get_tree().call_group("Player","Play",2,player)
+	else:
+		$AnimatedSprite.play("Idle")
 
 

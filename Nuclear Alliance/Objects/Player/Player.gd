@@ -21,7 +21,6 @@ var followCam : Camera2D
 #Which minigame the player is in interat range if any
 var gameHovered = 0
 
-
 ### Gets the player ready ###
 func _ready():
 
@@ -46,6 +45,7 @@ func _ready():
 
 ### Everything that happens on a every-frame basis ###
 func _physics_process(_delta):
+	print(gameHovered)
 
 ## Detects keystrokes for movement and flips the player sprite & collision accordingly ##
 	if gameMode == false:
@@ -75,7 +75,7 @@ func _physics_process(_delta):
 ## Sets sprite animation ##
 	if (velocity.x > 50 or velocity.x < -50):
 		$Sprite.play("Walk")
-	else:
+	elif gameMode == false:
 		$Sprite.play("Stand")
 		
 ## Converts keystrokes into movement and updates the camera location ##
@@ -106,3 +106,18 @@ func Play(connectingGame, connectingGamePlayer):
 func Quit(connectingGamePlayer):
 	if connectingGamePlayer == player:
 		gameMode = false
+
+###Locks player in animation after a sabotage is selected###
+func Animate(ConnectingGamePlayer,Anim,offset):
+	if ConnectingGamePlayer == player:
+		$Sprite.play(Anim)
+		$Sprite.position = offset
+		$Sprite.flip_h = false
+		gameMode = true
+
+
+func _on_Sprite_animation_finished():
+	if $Sprite.animation == "HeatRay" or $Sprite.animation == "Tazer" or $Sprite.animation == "PBoy":
+		$Sprite.play("Stand")
+		gameMode = false
+		$Sprite.position = Vector2(0,0)

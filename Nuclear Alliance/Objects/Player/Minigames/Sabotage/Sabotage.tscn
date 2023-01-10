@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Objects/Player/Minigames/Sabotage/Sabotage.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Player/Minigames/Sabotage/SabotageCursor.gd" type="Script" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://Objects/Player/Minigames/Sabotage/ObjectSprites/HeatRay_off.png" type="Texture" id=13]
 [ext_resource path="res://Objects/Player/Minigames/Sabotage/ObjectSprites/PresBoy_on2.png" type="Texture" id=14]
 [ext_resource path="res://Objects/Player/Minigames/Sabotage/ButtonManager.gd" type="Script" id=15]
+[ext_resource path="res://Objects/Letters/Letter.tscn" type="PackedScene" id=16]
 
 [sub_resource type="SpriteFrames" id=6]
 animations = [ {
@@ -59,18 +60,20 @@ animations = [ {
 extents = Vector2( 0.5, 0.5 )
 
 [node name="MinigameBase" type="Node2D" groups=["Minigame"]]
-position = Vector2( 6, -7 )
+position = Vector2( 50, 47 )
 script = ExtResource( 1 )
+attachedPlayer = 1
 
 [node name="Table" type="Sprite" parent="."]
+position = Vector2( 8, -11 )
 texture = ExtResource( 6 )
 
 [node name="ButtonManager" type="Node2D" parent="."]
-position = Vector2( -8, 11 )
+position = Vector2( 10, -11 )
 script = ExtResource( 15 )
 
 [node name="Tazer" type="Node2D" parent="ButtonManager"]
-position = Vector2( -32, -41 )
+position = Vector2( -40, -30 )
 
 [node name="TazerCollision" type="Area2D" parent="ButtonManager/Tazer"]
 collision_layer = 256
@@ -87,7 +90,7 @@ frame = 1
 playing = true
 
 [node name="PressureBoy" type="Node2D" parent="ButtonManager"]
-position = Vector2( -32, -41 )
+position = Vector2( -40, -30 )
 
 [node name="PBoyCollision" type="Area2D" parent="ButtonManager/PressureBoy"]
 position = Vector2( 40, 31 )
@@ -106,7 +109,7 @@ frame = 1
 playing = true
 
 [node name="HeatRay" type="Node2D" parent="ButtonManager"]
-position = Vector2( -32, -41 )
+position = Vector2( -40, -30 )
 
 [node name="HeatRayCollision" type="Area2D" parent="ButtonManager/HeatRay"]
 collision_layer = 256
@@ -141,6 +144,64 @@ stretch_mode = 3
 [node name="Sprite" type="Sprite" parent="Cursor/TextureRect"]
 position = Vector2( 33, 29 )
 texture = ExtResource( 4 )
+
+[node name="Overlay1" type="Node2D" parent="."]
+visible = false
+position = Vector2( -92, 28 )
+
+[node name="Letter" parent="Overlay1" instance=ExtResource( 16 )]
+position = Vector2( 29, -38 )
+Text = "W"
+Key = "Up1"
+
+[node name="Letter2" parent="Overlay1" instance=ExtResource( 16 )]
+position = Vector2( 19, -22 )
+Text = "A"
+Key = "Left1"
+
+[node name="Letter3" parent="Overlay1" instance=ExtResource( 16 )]
+position = Vector2( 35, -22 )
+Text = "S"
+Key = "Down1"
+
+[node name="Letter4" parent="Overlay1" instance=ExtResource( 16 )]
+position = Vector2( 51, -22 )
+Text = "D"
+Key = "Right1"
+
+[node name="Letter5" parent="Overlay1" instance=ExtResource( 16 )]
+position = Vector2( 45, -38 )
+Text = "E"
+Key = "Interact1"
+
+[node name="Overlay2" type="Node2D" parent="."]
+visible = false
+position = Vector2( -78, 22 )
+
+[node name="Letter" parent="Overlay2" instance=ExtResource( 16 )]
+position = Vector2( 21, -52 )
+Text = "↑ "
+Key = "Up2"
+
+[node name="Letter2" parent="Overlay2" instance=ExtResource( 16 )]
+position = Vector2( 5, -36 )
+Text = "← "
+Key = "Left2"
+
+[node name="Letter3" parent="Overlay2" instance=ExtResource( 16 )]
+position = Vector2( 21, -36 )
+Text = "↓ "
+Key = "Down2"
+
+[node name="Letter4" parent="Overlay2" instance=ExtResource( 16 )]
+position = Vector2( 37, -36 )
+Text = "→ "
+Key = "Right2"
+
+[node name="Letter5" parent="Overlay2" instance=ExtResource( 16 )]
+position = Vector2( 9, -16 )
+Text = "ctrl"
+Key = "Interact2"
 
 [connection signal="body_entered" from="ButtonManager/Tazer/TazerCollision" to="ButtonManager" method="_on_TazerCollision_body_entered"]
 [connection signal="body_exited" from="ButtonManager/Tazer/TazerCollision" to="ButtonManager" method="_on_TazerCollision_body_exited"]

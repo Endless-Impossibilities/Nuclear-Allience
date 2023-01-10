@@ -20,7 +20,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="PwrBxSM" type="Node2D" groups=["PwrBxSM"]]
+[node name="PwrBxSM" type="Node2D" groups=["SbtgeSM"]]
 script = ExtResource( 1 )
 
 [node name="Area2D" type="Area2D" parent="."]

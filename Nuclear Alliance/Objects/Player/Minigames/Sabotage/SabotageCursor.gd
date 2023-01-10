@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 var velocity = Vector2(0,0)
 var active = true
-var attachedPlayer = 1
+export var attachedPlayer = 1
 var PreviousX = 0
 var PreviousY = 0
 var speed = 65
