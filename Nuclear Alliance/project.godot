@@ -47,6 +47,10 @@ texture_array={
 texture_3d={
 "flags/filter": false
 }
+wav={
+"edit/loop_mode": 2,
+"force/8_bit": true
+}
 
 [input]
 
