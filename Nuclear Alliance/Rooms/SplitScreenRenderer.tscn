@@ -47,6 +47,7 @@ smoothing_speed = 10.0
 offset = Vector2( 0, -26 )
 transform = Transform2D( 1, 0, 0, 1, 0, -26 )
 follow_viewport_enable = false
+attachedPlayer = 1
 
 [node name="container2" type="ViewportContainer" parent="GridContainer"]
 margin_top = 62.0
@@ -75,3 +76,4 @@ player = 2
 [node name="ParallaxBackground" parent="GridContainer/container2/viewport2" instance=ExtResource( 3 )]
 offset = Vector2( 0, 216 )
 transform = Transform2D( 1, 0, 0, 1, 0, 216 )
+attachedPlayer = 2

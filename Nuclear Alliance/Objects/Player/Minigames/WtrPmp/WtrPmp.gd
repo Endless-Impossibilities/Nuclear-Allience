@@ -13,6 +13,8 @@ var calledPlayer = 0
 var waitingOn = "Left"
 var locked = true
 
+
+
 ### Makes sure the minigame is ready ###
 func _ready():
 	self.position = Vector2(1000,1000)
@@ -93,4 +95,5 @@ func Quit():
 
 ## Tells the station to "Fix" it's self and get ready for the next play ##
 	get_tree().call_group("WtrPmpSM","End",attachedPlayer)
-		
+
+

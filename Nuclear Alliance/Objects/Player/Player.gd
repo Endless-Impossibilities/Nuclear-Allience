@@ -45,7 +45,6 @@ func _ready():
 
 ### Everything that happens on a every-frame basis ###
 func _physics_process(_delta):
-	print(gameHovered)
 
 ## Detects keystrokes for movement and flips the player sprite & collision accordingly ##
 	if gameMode == false:
@@ -118,6 +117,9 @@ func Animate(ConnectingGamePlayer,Anim,offset):
 
 func _on_Sprite_animation_finished():
 	if $Sprite.animation == "HeatRay" or $Sprite.animation == "Tazer" or $Sprite.animation == "PBoy":
+		if $Sprite.animation == "HeatRay":
+			get_tree().call_group("WtrPmpSM", "overHeat", player)
 		$Sprite.play("Stand")
 		gameMode = false
 		$Sprite.position = Vector2(0,0)
+

@@ -1,8 +1,8 @@
 extends CanvasLayer
 
 #Variables for how much time is left till sabotage is active
-var sbtgeTime = 0.0
-var maxSbtgeTime = 30.0*60.0
+var sbtgeTime = 60.0 * 60.0
+var maxSbtgeTime = 60.0*60.0
 var sbtgePercent = 0.0
 
 #Variables for weather certain minigames are ready#

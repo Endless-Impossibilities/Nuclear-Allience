@@ -8,8 +8,8 @@ var avalible = false
 #Weather or not the game is currently in use
 var active = false
 #The amount of time it takes for the station to be available
-var time = 30*60
-var maxTime = 30*60
+var time = 60*60
+var maxTime = 60*60
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -30,7 +30,6 @@ func Running():
 	
 #"Fixes" the game station and marks it as no longer active
 func End(callingPlayer):
-	print("here")
 	if callingPlayer == player:
 		active = false
 		avalible = false

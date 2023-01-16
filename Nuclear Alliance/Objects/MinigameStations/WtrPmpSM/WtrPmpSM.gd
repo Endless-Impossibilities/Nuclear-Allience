@@ -11,6 +11,8 @@ var active = false
 #Decreases by 5 each cycle
 var playerColliding = false
 
+var overHeat = 0.0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Globals.Wtr1 = Globals.MaxWtr
@@ -41,12 +43,24 @@ func End(callingPlayer):
 		broken = false
 	
 func _physics_process(_delta):
+	
+	if overHeat > 0:
+		get_tree().call_group("BackDrop","checkOverheat",player,overHeat)
+	
 	if player == 1 && Globals.Wtr1 >= 0:
-		Globals.Wtr1 -= 1
+		if overHeat <= 0:
+			Globals.Wtr1 -= 1
+		if overHeat > 0:
+			Globals.Wtr1 -= 3
+			overHeat -= 1
 		if Globals.Wtr1 < Globals.MaxWtr *.75 && active == false:
 			broken = true
 	if player == 2 && Globals.Wtr1 >= 0:
-		Globals.Wtr2 -= 1
+		if overHeat <= 0:
+			Globals.Wtr2 -= 1
+		if overHeat > 0:
+			Globals.Wtr2 -= 3
+			overHeat -= 1
 		if Globals.Wtr2 < Globals.MaxWtr *.75 && active == false:
 			broken = true
 	if broken == true && active == false && playerColliding == true:
@@ -55,4 +69,6 @@ func _physics_process(_delta):
 	else:
 		$AnimatedSprite.play("Idle")
 
-
+func overHeat(CallingStation):
+	if CallingStation != player:
+		overHeat = 10*60
