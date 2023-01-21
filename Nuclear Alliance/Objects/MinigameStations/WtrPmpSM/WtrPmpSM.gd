@@ -70,5 +70,5 @@ func _physics_process(_delta):
 		$AnimatedSprite.play("Idle")
 
 func overHeat(CallingStation):
-	if CallingStation != player:
+	if CallingStation == player:
 		overHeat = 10*60

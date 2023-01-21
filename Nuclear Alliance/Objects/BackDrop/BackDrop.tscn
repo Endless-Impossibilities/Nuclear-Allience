@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://Objects/BackDrop/Layer1.png" type="Texture" id=1]
 [ext_resource path="res://Objects/BackDrop/Layer4.png" type="Texture" id=2]
@@ -6,10 +6,51 @@
 [ext_resource path="res://Objects/BackDrop/Overheat.png" type="Texture" id=4]
 [ext_resource path="res://Objects/BackDrop/Lights.gd" type="Script" id=5]
 [ext_resource path="res://Objects/BackDrop/BackDrop.gd" type="Script" id=6]
+[ext_resource path="res://Objects/BackDrop/Anims/HeatRay/Tank-Hit25.png" type="Texture" id=7]
+[ext_resource path="res://Objects/BackDrop/Anims/HeatRay/Tank-Hit26.png" type="Texture" id=8]
+[ext_resource path="res://Objects/BackDrop/Anims/HeatRay/Tank-Hit28.png" type="Texture" id=9]
+[ext_resource path="res://Objects/BackDrop/Anims/HeatRay/Tank-Hit27.png" type="Texture" id=10]
+[ext_resource path="res://Objects/BackDrop/Anims/HeatRay/Tank-Hit1.png" type="Texture" id=11]
+[ext_resource path="res://Objects/BackDrop/Anims/HeatRay/Tank-Hit5.png" type="Texture" id=12]
+[ext_resource path="res://Objects/BackDrop/Anims/HeatRay/Tank-Hit3.png" type="Texture" id=13]
+[ext_resource path="res://Objects/BackDrop/Anims/HeatRay/Tank-Hit4.png" type="Texture" id=14]
+[ext_resource path="res://Objects/BackDrop/Anims/HeatRay/Tank-Hit6.png" type="Texture" id=15]
+[ext_resource path="res://Objects/BackDrop/Anims/HeatRay/Tank-Hit2.png" type="Texture" id=16]
+[ext_resource path="res://Objects/BackDrop/Anims/HeatRay/Tank-Hit7.png" type="Texture" id=17]
+[ext_resource path="res://Objects/BackDrop/Anims/HeatRay/Tank-Hit8.png" type="Texture" id=18]
+[ext_resource path="res://Objects/BackDrop/Anims/HeatRay/Tank-Hit10.png" type="Texture" id=19]
+[ext_resource path="res://Objects/BackDrop/Anims/HeatRay/Tank-Hit9.png" type="Texture" id=20]
+[ext_resource path="res://Objects/BackDrop/Anims/HeatRay/Tank-Hit11.png" type="Texture" id=21]
+[ext_resource path="res://Objects/BackDrop/Anims/HeatRay/Tank-Hit13.png" type="Texture" id=22]
+[ext_resource path="res://Objects/BackDrop/Anims/HeatRay/Tank-Hit17.png" type="Texture" id=23]
+[ext_resource path="res://Objects/BackDrop/Anims/HeatRay/Tank-Hit18.png" type="Texture" id=24]
+[ext_resource path="res://Objects/BackDrop/Anims/HeatRay/Tank-Hit19.png" type="Texture" id=25]
+[ext_resource path="res://Objects/BackDrop/Anims/HeatRay/Tank-Hit20.png" type="Texture" id=26]
+[ext_resource path="res://Objects/BackDrop/Anims/HeatRay/Tank-Hit23.png" type="Texture" id=27]
+[ext_resource path="res://Objects/BackDrop/Anims/HeatRay/Tank-Hit12.png" type="Texture" id=28]
+[ext_resource path="res://Objects/BackDrop/Anims/HeatRay/Tank-Hit14.png" type="Texture" id=29]
+[ext_resource path="res://Objects/BackDrop/Anims/HeatRay/Tank-Hit15.png" type="Texture" id=30]
+[ext_resource path="res://Objects/BackDrop/Anims/HeatRay/Tank-Hit21.png" type="Texture" id=31]
+[ext_resource path="res://Objects/BackDrop/Anims/HeatRay/Tank-Hit16.png" type="Texture" id=32]
+[ext_resource path="res://Objects/BackDrop/Anims/HeatRay/Tank-Hit22.png" type="Texture" id=33]
+[ext_resource path="res://Objects/BackDrop/Anims/HeatRay/Tank-Hit24.png" type="Texture" id=34]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 blend_mode = 1
 light_mode = 1
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "Default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 16 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 12 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 20 ), ExtResource( 19 ), ExtResource( 21 ), ExtResource( 28 ), ExtResource( 22 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 32 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 31 ), ExtResource( 33 ), ExtResource( 27 ), ExtResource( 34 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "HeatRay",
+"speed": 20.0
+} ]
 
 [node name="ParallaxBackground" type="ParallaxBackground" groups=["BackDrop"]]
 follow_viewport_enable = true
@@ -71,3 +112,10 @@ modulate = Color( 1, 1, 1, 0 )
 material = SubResource( 1 )
 position = Vector2( 182, 22 )
 texture = ExtResource( 4 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="ParallaxLayer5"]
+position = Vector2( 182, 22 )
+frames = SubResource( 2 )
+animation = "HeatRay"
+
+[connection signal="animation_finished" from="ParallaxLayer5/AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]

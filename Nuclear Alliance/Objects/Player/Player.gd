@@ -118,7 +118,7 @@ func Animate(ConnectingGamePlayer,Anim,offset):
 func _on_Sprite_animation_finished():
 	if $Sprite.animation == "HeatRay" or $Sprite.animation == "Tazer" or $Sprite.animation == "PBoy":
 		if $Sprite.animation == "HeatRay":
-			get_tree().call_group("WtrPmpSM", "overHeat", player)
+			get_tree().call_group("BackDrop","Animate","HeatRay",player)
 		$Sprite.play("Stand")
 		gameMode = false
 		$Sprite.position = Vector2(0,0)
