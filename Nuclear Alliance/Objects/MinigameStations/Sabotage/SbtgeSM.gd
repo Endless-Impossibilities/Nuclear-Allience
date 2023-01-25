@@ -11,9 +11,7 @@ var active = false
 var time = 60*60
 var maxTime = 60*60
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	time = 1*60
+
 
 #Highlights the station's sprite if it is broken and the player is nearby
 func _on_Area2D_body_entered(body):

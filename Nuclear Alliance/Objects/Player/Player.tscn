@@ -158,9 +158,9 @@ extents = Vector2( 8, 16 )
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 22 ), ExtResource( 16 ), ExtResource( 15 ), ExtResource( 23 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 25 ), ExtResource( 17 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 24 ), ExtResource( 26 ), ExtResource( 14 ), ExtResource( 72 ), ExtResource( 56 ), ExtResource( 62 ), ExtResource( 57 ), ExtResource( 69 ), ExtResource( 70 ), ExtResource( 71 ), ExtResource( 65 ), ExtResource( 68 ), ExtResource( 59 ), ExtResource( 66 ), ExtResource( 58 ), ExtResource( 60 ), ExtResource( 61 ), ExtResource( 63 ), ExtResource( 64 ), ExtResource( 67 ), ExtResource( 45 ), ExtResource( 42 ), ExtResource( 53 ), ExtResource( 41 ), ExtResource( 43 ), ExtResource( 50 ), ExtResource( 51 ), ExtResource( 44 ), ExtResource( 39 ) ],
+"frames": [ ExtResource( 36 ), ExtResource( 40 ), ExtResource( 110 ), ExtResource( 105 ), ExtResource( 30 ), ExtResource( 28 ), ExtResource( 37 ), ExtResource( 33 ), ExtResource( 84 ), ExtResource( 92 ), ExtResource( 82 ), ExtResource( 94 ), ExtResource( 101 ), ExtResource( 97 ), ExtResource( 90 ), ExtResource( 73 ), ExtResource( 86 ), ExtResource( 79 ), ExtResource( 29 ), ExtResource( 38 ), ExtResource( 93 ), ExtResource( 111 ), ExtResource( 31 ), ExtResource( 83 ), ExtResource( 95 ), ExtResource( 80 ), ExtResource( 81 ), ExtResource( 77 ), ExtResource( 87 ), ExtResource( 88 ), ExtResource( 75 ), ExtResource( 85 ), ExtResource( 32 ), ExtResource( 102 ), ExtResource( 89 ), ExtResource( 100 ), ExtResource( 91 ), ExtResource( 34 ), ExtResource( 96 ), ExtResource( 35 ), ExtResource( 98 ), ExtResource( 99 ), ExtResource( 46 ), ExtResource( 103 ), ExtResource( 104 ), ExtResource( 106 ), ExtResource( 109 ), ExtResource( 74 ), ExtResource( 47 ), ExtResource( 107 ), ExtResource( 108 ), ExtResource( 76 ), ExtResource( 48 ), ExtResource( 49 ), ExtResource( 52 ), ExtResource( 54 ), ExtResource( 55 ), ExtResource( 78 ), ExtResource( 27 ) ],
 "loop": false,
-"name": "HeatRay",
+"name": "Tazer",
 "speed": 10.0
 }, {
 "frames": [ ExtResource( 127 ), ExtResource( 124 ), ExtResource( 126 ), ExtResource( 128 ), ExtResource( 136 ), ExtResource( 129 ), ExtResource( 121 ), ExtResource( 142 ), ExtResource( 146 ), ExtResource( 125 ), ExtResource( 138 ), ExtResource( 117 ), ExtResource( 144 ), ExtResource( 130 ), ExtResource( 131 ), ExtResource( 139 ), ExtResource( 145 ), ExtResource( 132 ), ExtResource( 116 ), ExtResource( 137 ), ExtResource( 133 ), ExtResource( 134 ), ExtResource( 135 ), ExtResource( 140 ), ExtResource( 141 ), ExtResource( 118 ), ExtResource( 143 ), ExtResource( 115 ), ExtResource( 119 ), ExtResource( 120 ), ExtResource( 122 ), ExtResource( 123 ), ExtResource( 152 ), ExtResource( 147 ), ExtResource( 148 ), ExtResource( 149 ), ExtResource( 150 ), ExtResource( 151 ), ExtResource( 112 ), ExtResource( 113 ), ExtResource( 114 ) ],
@@ -168,15 +168,15 @@ animations = [ {
 "name": "PBoy",
 "speed": 10.0
 }, {
+"frames": [ ExtResource( 22 ), ExtResource( 16 ), ExtResource( 15 ), ExtResource( 23 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 25 ), ExtResource( 17 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 24 ), ExtResource( 26 ), ExtResource( 14 ), ExtResource( 72 ), ExtResource( 56 ), ExtResource( 62 ), ExtResource( 57 ), ExtResource( 69 ), ExtResource( 70 ), ExtResource( 71 ), ExtResource( 65 ), ExtResource( 68 ), ExtResource( 59 ), ExtResource( 66 ), ExtResource( 58 ), ExtResource( 60 ), ExtResource( 61 ), ExtResource( 63 ), ExtResource( 64 ), ExtResource( 67 ), ExtResource( 45 ), ExtResource( 42 ), ExtResource( 53 ), ExtResource( 41 ), ExtResource( 43 ), ExtResource( 50 ), ExtResource( 51 ), ExtResource( 44 ), ExtResource( 39 ) ],
+"loop": false,
+"name": "HeatRay",
+"speed": 10.0
+}, {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
 "name": "Stand",
 "speed": 5.0
-}, {
-"frames": [ ExtResource( 36 ), ExtResource( 40 ), ExtResource( 110 ), ExtResource( 105 ), ExtResource( 30 ), ExtResource( 28 ), ExtResource( 37 ), ExtResource( 33 ), ExtResource( 84 ), ExtResource( 92 ), ExtResource( 82 ), ExtResource( 94 ), ExtResource( 101 ), ExtResource( 97 ), ExtResource( 90 ), ExtResource( 73 ), ExtResource( 86 ), ExtResource( 79 ), ExtResource( 29 ), ExtResource( 38 ), ExtResource( 93 ), ExtResource( 111 ), ExtResource( 31 ), ExtResource( 83 ), ExtResource( 95 ), ExtResource( 80 ), ExtResource( 81 ), ExtResource( 77 ), ExtResource( 87 ), ExtResource( 88 ), ExtResource( 75 ), ExtResource( 85 ), ExtResource( 32 ), ExtResource( 102 ), ExtResource( 89 ), ExtResource( 100 ), ExtResource( 91 ), ExtResource( 34 ), ExtResource( 96 ), ExtResource( 35 ), ExtResource( 98 ), ExtResource( 99 ), ExtResource( 46 ), ExtResource( 103 ), ExtResource( 104 ), ExtResource( 106 ), ExtResource( 109 ), ExtResource( 74 ), ExtResource( 47 ), ExtResource( 107 ), ExtResource( 108 ), ExtResource( 76 ), ExtResource( 48 ), ExtResource( 49 ), ExtResource( 52 ), ExtResource( 54 ), ExtResource( 55 ), ExtResource( 78 ), ExtResource( 27 ) ],
-"loop": false,
-"name": "Tazer",
-"speed": 10.0
 }, {
 "frames": [ ExtResource( 8 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 7 ), ExtResource( 9 ), ExtResource( 3 ), ExtResource( 6 ), ExtResource( 11 ) ],
 "loop": true,
@@ -206,5 +206,8 @@ animation = "PBoy"
 [node name="Minigame3" parent="Minigames" instance=ExtResource( 12 )]
 position = Vector2( -16, -5 )
 Self = 3
+
+[node name="Listener2D" type="Listener2D" parent="."]
+current = true
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_Sprite_animation_finished"]

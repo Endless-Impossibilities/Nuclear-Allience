@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/AlarmWater.wav-bf0d34555970e4cbbd356cb158acef70.sample"
+
+[deps]
+
+source_file="res://Sounds/AlarmWater.wav"
+dest_files=[ "res://.import/AlarmWater.wav-bf0d34555970e4cbbd356cb158acef70.sample" ]
+
+[params]
+
+force/8_bit=true
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
