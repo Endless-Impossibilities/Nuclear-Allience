@@ -112,6 +112,7 @@
 [ext_resource path="res://Objects/Player/Tazer/PlayerTaze3.png" type="Texture" id=110]
 [ext_resource path="res://Objects/Player/Tazer/PlayerTaze22.png" type="Texture" id=111]
 
+
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 8, 16 )
 

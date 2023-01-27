@@ -41,6 +41,7 @@ func _ready():
 	$"Minigames/Minigame1".attachedPlayer = player
 	$"Minigames/Minigame2".attachedPlayer = player
 	$"Minigames/Minigame3".attachedPlayer = player
+	$"Minigames/Minigame4".attachedPlayer = player
 	
 
 ### Everything that happens on a every-frame basis ###

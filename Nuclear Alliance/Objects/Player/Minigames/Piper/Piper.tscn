@@ -1,0 +1,260 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Objects/Player/Minigames/PwrBX/PwrBx.gd" type="Script" id=1]
+[ext_resource path="res://Objects/Player/Minigames/PwrBX/LG.png" type="Texture" id=2]
+[ext_resource path="res://Objects/Player/Minigames/Cursor.gd" type="Script" id=3]
+[ext_resource path="res://Objects/Player/Minigames/PwrBX/Sodder.png" type="Texture" id=4]
+[ext_resource path="res://Objects/Player/Minigames/PwrBX/Break.gd" type="Script" id=5]
+[ext_resource path="res://Objects/Player/Minigames/PwrBX/BreakCollider.gd" type="Script" id=6]
+[ext_resource path="res://Objects/Tiles/Sparks.png" type="Texture" id=7]
+[ext_resource path="res://Objects/Letters/Letter.tscn" type="PackedScene" id=8]
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0, 0.357542, 0.746032, 1 )
+colors = PoolColorArray( 1, 1, 1, 0.501961, 0.501961, 0.501961, 0.501961, 0.501961, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="CanvasItemMaterial" id=5]
+blend_mode = 4
+light_mode = 1
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 3.5, 3.5 )
+
+[sub_resource type="CanvasItemMaterial" id=6]
+light_mode = 1
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.581006, 0.899441, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 0.592285, 0.592285, 0.592285, 1, 1, 1, 1, 0 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 1, 1 )
+
+[sub_resource type="CanvasItemMaterial" id=7]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=8]
+light_mode = 1
+
+[node name="Minigame1" type="Node2D" groups=["Minigame"]]
+script = ExtResource( 1 )
+Self = 1
+
+[node name="Overlay1" type="Node2D" parent="."]
+visible = false
+position = Vector2( 7, 31 )
+
+[node name="Letter" parent="Overlay1" instance=ExtResource( 8 )]
+position = Vector2( 29, -38 )
+Text = "W"
+Key = "Up1"
+
+[node name="Letter2" parent="Overlay1" instance=ExtResource( 8 )]
+position = Vector2( 19, -22 )
+Text = "A"
+Key = "Left1"
+
+[node name="Letter3" parent="Overlay1" instance=ExtResource( 8 )]
+position = Vector2( 35, -22 )
+Text = "S"
+Key = "Down1"
+
+[node name="Letter4" parent="Overlay1" instance=ExtResource( 8 )]
+position = Vector2( 51, -22 )
+Text = "D"
+Key = "Right1"
+
+[node name="Letter5" parent="Overlay1" instance=ExtResource( 8 )]
+position = Vector2( 45, -38 )
+Text = "E"
+Key = "Interact1"
+
+[node name="Overlay2" type="Node2D" parent="."]
+visible = false
+position = Vector2( 21, 25 )
+
+[node name="Letter" parent="Overlay2" instance=ExtResource( 8 )]
+position = Vector2( 21, -52 )
+Text = "↑ "
+Key = "Up2"
+
+[node name="Letter2" parent="Overlay2" instance=ExtResource( 8 )]
+position = Vector2( 5, -36 )
+Text = "← "
+Key = "Left2"
+
+[node name="Letter3" parent="Overlay2" instance=ExtResource( 8 )]
+position = Vector2( 21, -36 )
+Text = "↓ "
+Key = "Down2"
+
+[node name="Letter4" parent="Overlay2" instance=ExtResource( 8 )]
+position = Vector2( 37, -36 )
+Text = "→ "
+Key = "Right2"
+
+[node name="Letter5" parent="Overlay2" instance=ExtResource( 8 )]
+position = Vector2( 9, -16 )
+Text = "ctrl"
+Key = "Interact2"
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -21, -41 )
+texture = ExtResource( 2 )
+centered = false
+
+[node name="Cursor" type="KinematicBody2D" parent="."]
+position = Vector2( 25, 0 )
+collision_layer = 2
+collision_mask = 2
+script = ExtResource( 3 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Cursor"]
+position = Vector2( 1, -10 )
+emitting = false
+amount = 30
+lifetime = 1.5
+speed_scale = 1.5
+randomness = 0.9
+lifetime_randomness = 0.5
+local_coords = false
+direction = Vector2( 100, -20 )
+spread = 15.86
+gravity = Vector2( 0, -98 )
+initial_velocity = 20.0
+initial_velocity_random = 0.39
+angular_velocity = 100.0
+color = Color( 0.384314, 0.384314, 0.384314, 1 )
+color_ramp = SubResource( 4 )
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="Cursor"]
+material = SubResource( 5 )
+position = Vector2( 1, -10 )
+emitting = false
+amount = 3
+lifetime = 1.25
+explosiveness = 0.75
+local_coords = false
+texture = ExtResource( 7 )
+direction = Vector2( -3, 5 )
+initial_velocity = 10.0
+initial_velocity_random = 1.0
+linear_accel = -12.0
+color = Color( 0.721569, 0.137255, 0, 1 )
+hue_variation = 1.0
+
+[node name="Sprite" type="Sprite" parent="Cursor"]
+position = Vector2( 14, 20 )
+texture = ExtResource( 4 )
+
+[node name="Area2D" type="Area2D" parent="Cursor"]
+position = Vector2( -1, -1 )
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cursor/Area2D"]
+position = Vector2( 2.5, -8.5 )
+shape = SubResource( 1 )
+
+[node name="Break1" type="Node2D" parent="."]
+visible = false
+position = Vector2( -12, 7 )
+script = ExtResource( 5 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Break1"]
+material = SubResource( 6 )
+amount = 20
+lifetime = 1.5
+speed_scale = 1.5
+explosiveness = 0.66
+randomness = 0.9
+lifetime_randomness = 0.5
+texture = ExtResource( 7 )
+direction = Vector2( 0, -20 )
+spread = 90.0
+initial_velocity = 30.0
+initial_velocity_random = 1.0
+angular_velocity = 100.0
+angular_velocity_random = 1.0
+color = Color( 1, 1, 0, 1 )
+color_ramp = SubResource( 2 )
+hue_variation = 0.05
+hue_variation_random = 0.49
+
+[node name="Area2D" type="Area2D" parent="Break1"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Break1/Area2D"]
+shape = SubResource( 3 )
+
+[node name="Break2" type="Node2D" parent="."]
+visible = false
+position = Vector2( -8, -41 )
+script = ExtResource( 5 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Break2"]
+material = SubResource( 7 )
+amount = 20
+lifetime = 1.5
+speed_scale = 1.5
+explosiveness = 0.66
+randomness = 0.9
+lifetime_randomness = 0.5
+texture = ExtResource( 7 )
+direction = Vector2( 0, -20 )
+spread = 90.0
+initial_velocity = 30.0
+initial_velocity_random = 1.0
+angular_velocity = 100.0
+angular_velocity_random = 1.0
+color = Color( 1, 1, 0, 1 )
+color_ramp = SubResource( 2 )
+hue_variation = 0.05
+hue_variation_random = 0.49
+
+[node name="Area2D" type="Area2D" parent="Break2"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Break2/Area2D"]
+shape = SubResource( 3 )
+
+[node name="Break3" type="Node2D" parent="."]
+position = Vector2( -7, -21 )
+rotation = -1.55005
+script = ExtResource( 5 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Break3"]
+modulate = Color( 0, 0.94902, 1, 1 )
+self_modulate = Color( 0, 0.529412, 1, 1 )
+material = SubResource( 8 )
+rotation = -0.0280224
+amount = 20
+lifetime = 1.5
+speed_scale = 2.35
+explosiveness = 0.07
+randomness = 0.28
+lifetime_randomness = 0.23
+texture = ExtResource( 7 )
+direction = Vector2( 0, 0.979 )
+spread = 37.15
+initial_velocity = 30.0
+initial_velocity_random = 1.0
+angular_velocity = 100.0
+angular_velocity_random = 1.0
+color = Color( 0, 1, 0.960784, 1 )
+color_ramp = SubResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="Break3"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Break3/Area2D"]
+shape = SubResource( 3 )
+
+[connection signal="area_entered" from="Cursor/Area2D" to="Cursor" method="_on_Area2D_area_entered"]
+[connection signal="area_exited" from="Cursor/Area2D" to="Cursor" method="_on_Area2D_area_exited"]
