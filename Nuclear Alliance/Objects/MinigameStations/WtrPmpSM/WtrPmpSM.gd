@@ -56,16 +56,15 @@ func _physics_process(_delta):
 			$AudioStreamPlayer2D.play()
 			alarmPlaying = true
 		$AudioStreamPlayer2D.pitch_scale = -(Globals.Wtr2 / Globals.MaxWtr) + 2
-		$AudioStreamPlayer2D.volume_db = -((Globals.Wtr2 / Globals.MaxWtr) * 2) - 10
+		$AudioStreamPlayer2D.volume_db = lerp($AudioStreamPlayer2D.volume_db,-((Globals.Wtr1 / Globals.MaxWtr) * 2) - 10,0.05)
 	elif player == 1 && Globals.Wtr1 <= 1500:
 		if alarmPlaying == false:
 			$AudioStreamPlayer2D.play()
 			alarmPlaying = true
 		$AudioStreamPlayer2D.pitch_scale = -(Globals.Wtr1 / Globals.MaxWtr) + 2
-		$AudioStreamPlayer2D.volume_db = -((Globals.Wtr1 / Globals.MaxWtr) * 2) - 10
+		$AudioStreamPlayer2D.volume_db = lerp($AudioStreamPlayer2D.volume_db,-((Globals.Wtr1 / Globals.MaxWtr) * 2) - 10,0.05)
 	else:
-		$AudioStreamPlayer2D.playing = false
-		$AudioStreamPlayer2D.volume_db = -80
+		$AudioStreamPlayer2D.volume_db = lerp($AudioStreamPlayer2D.volume_db,-80,0.05)
 		alarmPlaying == false
 	
 	

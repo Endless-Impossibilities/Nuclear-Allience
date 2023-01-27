@@ -32,10 +32,12 @@ func _physics_process(delta):
 				Soddering = true
 				$CPUParticles2D.emitting = true
 				$CPUParticles2D2.emitting = true
+				$AudioStreamPlayer.volume_db = -10
 			else:
 				Soddering = false
 				$CPUParticles2D.emitting = false
 				$CPUParticles2D2.emitting = false
+				$AudioStreamPlayer.volume_db = -80
 	
 		if (attachedPlayer == 2):
 			if Input.is_action_pressed("Left2"):
@@ -51,10 +53,17 @@ func _physics_process(delta):
 				Soddering = true
 				$CPUParticles2D.emitting = true
 				$CPUParticles2D2.emitting = true
+				$AudioStreamPlayer.volume_db = -10
 			else:
 				Soddering = false
 				$CPUParticles2D.emitting = false
 				$CPUParticles2D2.emitting = false
+				$AudioStreamPlayer.volume_db = -80
+				
+	else:
+		$AudioStreamPlayer.volume_db = -80
+	
+	
 	if Soddering == true && Fixing == true:
 		breakFixing.SelfDestruct()
 		$"..".Fix()

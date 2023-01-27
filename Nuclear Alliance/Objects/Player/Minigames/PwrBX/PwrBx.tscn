@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Objects/Player/Minigames/PwrBX/PwrBx.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Player/Minigames/PwrBX/LG.png" type="Texture" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://Objects/Player/Minigames/PwrBX/BreakCollider.gd" type="Script" id=6]
 [ext_resource path="res://Objects/Tiles/Sparks.png" type="Texture" id=7]
 [ext_resource path="res://Objects/Letters/Letter.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Sounds/Sodder.wav" type="AudioStream" id=9]
+[ext_resource path="res://Sounds/SodderFix.wav" type="AudioStream" id=10]
 
 [sub_resource type="Gradient" id=4]
 offsets = PoolRealArray( 0, 0.357542, 0.746032, 1 )
@@ -155,6 +157,11 @@ collision_mask = 2
 position = Vector2( 2.5, -8.5 )
 shape = SubResource( 1 )
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Cursor"]
+stream = ExtResource( 9 )
+volume_db = -10.0
+autoplay = true
+
 [node name="Break1" type="Node2D" parent="."]
 position = Vector2( -12, 7 )
 script = ExtResource( 5 )
@@ -253,5 +260,10 @@ script = ExtResource( 6 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Break3/Area2D"]
 shape = SubResource( 3 )
 
+[node name="FixSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+volume_db = -5.0
+
 [connection signal="area_entered" from="Cursor/Area2D" to="Cursor" method="_on_Area2D_area_entered"]
 [connection signal="area_exited" from="Cursor/Area2D" to="Cursor" method="_on_Area2D_area_exited"]
+[connection signal="finished" from="FixSound" to="." method="_on_FixSound_finished"]

@@ -22,12 +22,12 @@ func _ready():
 
 
 #Tells the sprite a player is nearby
-func _on_Area2D_body_entered(body):
+func _on_Area2D_body_entered(_body):
 	hovered = true
 
 #	Tells the sprite that a player is no longer nearby and
 #tells said player that they are no longer near this station
-func _on_Area2D_body_exited(body):
+func _on_Area2D_body_exited(_body):
 	hovered = false
 	get_tree().call_group("Player","Play",0, player)
 

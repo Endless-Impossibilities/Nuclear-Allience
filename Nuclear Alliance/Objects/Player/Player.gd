@@ -95,6 +95,16 @@ func _physics_process(_delta):
 			get_tree().call_group("Minigame","Game",gameHovered,player)
 			gameHovered = 0
 			gameMode = true
+	
+	## Plays Step Sound effect
+	
+	if $Sprite.animation == "Walk":
+		if $Sprite.frame == 1 or $Sprite.frame == 4:
+			$StepSound.play()
+			$StepSound.volume_db = -3
+			yield(get_tree().create_timer(0.04),"timeout")
+			$StepSound.volume_db = -80
+			$StepSound.playing = false
 
 ### Gets what minigame is currently in interact range of the player if any ###
 func Play(connectingGame, connectingGamePlayer):
