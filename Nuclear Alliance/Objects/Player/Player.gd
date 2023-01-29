@@ -15,6 +15,8 @@ export var player = 0
 # Locks movement when true
 var gameMode = false
 
+var stepping = false
+
 #The Viewport the player is using
 var followCam : Camera2D
 
@@ -101,11 +103,12 @@ func _physics_process(_delta):
 	
 	if $Sprite.animation == "Walk":
 		if $Sprite.frame == 1 or $Sprite.frame == 4:
-			$StepSound.play()
-			$StepSound.volume_db = -3
-			yield(get_tree().create_timer(0.04),"timeout")
-			$StepSound.volume_db = -80
-			$StepSound.playing = false
+			if stepping == false:
+				$StepSound.play()
+				stepping = true
+				yield(get_tree().create_timer(0.16),"timeout")
+				stepping = false
+
 
 ### Gets what minigame is currently in interact range of the player if any ###
 func Play(connectingGame, connectingGamePlayer):

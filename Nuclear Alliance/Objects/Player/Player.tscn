@@ -1,4 +1,4 @@
-[gd_scene load_steps=156 format=2]
+[gd_scene load_steps=157 format=2]
 
 [ext_resource path="res://Objects/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Player/Player.png" type="Texture" id=2]
@@ -152,8 +152,8 @@
 [ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy37.png" type="Texture" id=150]
 [ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy38.png" type="Texture" id=151]
 [ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy33.png" type="Texture" id=152]
-[ext_resource path="res://Sounds/Step.wav" type="AudioStream" id=153]
-
+[ext_resource path="res://Sounds/Step.mp3" type="AudioStream" id=153]
+[ext_resource path="res://Objects/Player/Minigames/Piper/Piper.tscn" type="PackedScene" id=154]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 8, 16 )
@@ -209,10 +209,14 @@ animation = "PBoy"
 position = Vector2( -16, -5 )
 Self = 3
 
+[node name="Minigame4" parent="Minigames" instance=ExtResource( 154 )]
+
 [node name="Listener2D" type="Listener2D" parent="."]
 current = true
 
 [node name="StepSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 153 )
+volume_db = -10.0
+pitch_scale = 1.5
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_Sprite_animation_finished"]
