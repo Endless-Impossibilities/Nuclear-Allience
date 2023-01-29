@@ -67,6 +67,11 @@ func Quit():
 
 ### Handels breaks being fixed ###
 func Fix():
+	$FixSound.volume_db = -5
+	$FixSound.play()
 	breaksRemaining -= 1
 	if breaksRemaining <= 0:
 		Quit()
+	yield(get_tree().create_timer(0.2),"timeout")
+	$FixSound.volume_db = -80
+

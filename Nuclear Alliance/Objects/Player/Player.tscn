@@ -1,4 +1,4 @@
-[gd_scene load_steps=114 format=2]
+[gd_scene load_steps=156 format=2]
 
 [ext_resource path="res://Objects/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Player/Player.png" type="Texture" id=2]
@@ -111,6 +111,48 @@
 [ext_resource path="res://Objects/Player/Tazer/PlayerTaze47.png" type="Texture" id=109]
 [ext_resource path="res://Objects/Player/Tazer/PlayerTaze3.png" type="Texture" id=110]
 [ext_resource path="res://Objects/Player/Tazer/PlayerTaze22.png" type="Texture" id=111]
+[ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy39.png" type="Texture" id=112]
+[ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy40.png" type="Texture" id=113]
+[ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy41.png" type="Texture" id=114]
+[ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy28.png" type="Texture" id=115]
+[ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy19.png" type="Texture" id=116]
+[ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy12.png" type="Texture" id=117]
+[ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy26.png" type="Texture" id=118]
+[ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy29.png" type="Texture" id=119]
+[ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy30.png" type="Texture" id=120]
+[ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy7.png" type="Texture" id=121]
+[ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy31.png" type="Texture" id=122]
+[ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy32.png" type="Texture" id=123]
+[ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy2.png" type="Texture" id=124]
+[ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy10.png" type="Texture" id=125]
+[ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy3.png" type="Texture" id=126]
+[ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy1.png" type="Texture" id=127]
+[ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy4.png" type="Texture" id=128]
+[ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy6.png" type="Texture" id=129]
+[ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy14.png" type="Texture" id=130]
+[ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy15.png" type="Texture" id=131]
+[ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy18.png" type="Texture" id=132]
+[ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy21.png" type="Texture" id=133]
+[ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy22.png" type="Texture" id=134]
+[ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy23.png" type="Texture" id=135]
+[ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy5.png" type="Texture" id=136]
+[ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy20.png" type="Texture" id=137]
+[ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy11.png" type="Texture" id=138]
+[ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy16.png" type="Texture" id=139]
+[ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy24.png" type="Texture" id=140]
+[ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy25.png" type="Texture" id=141]
+[ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy8.png" type="Texture" id=142]
+[ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy27.png" type="Texture" id=143]
+[ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy13.png" type="Texture" id=144]
+[ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy17.png" type="Texture" id=145]
+[ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy9.png" type="Texture" id=146]
+[ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy34.png" type="Texture" id=147]
+[ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy35.png" type="Texture" id=148]
+[ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy36.png" type="Texture" id=149]
+[ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy37.png" type="Texture" id=150]
+[ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy38.png" type="Texture" id=151]
+[ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy33.png" type="Texture" id=152]
+[ext_resource path="res://Sounds/Step.wav" type="AudioStream" id=153]
 
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -123,10 +165,10 @@ animations = [ {
 "name": "HeatRay",
 "speed": 10.0
 }, {
-"frames": [  ],
+"frames": [ ExtResource( 127 ), ExtResource( 124 ), ExtResource( 126 ), ExtResource( 128 ), ExtResource( 136 ), ExtResource( 129 ), ExtResource( 121 ), ExtResource( 142 ), ExtResource( 146 ), ExtResource( 125 ), ExtResource( 138 ), ExtResource( 117 ), ExtResource( 144 ), ExtResource( 130 ), ExtResource( 131 ), ExtResource( 139 ), ExtResource( 145 ), ExtResource( 132 ), ExtResource( 116 ), ExtResource( 137 ), ExtResource( 133 ), ExtResource( 134 ), ExtResource( 135 ), ExtResource( 140 ), ExtResource( 141 ), ExtResource( 118 ), ExtResource( 143 ), ExtResource( 115 ), ExtResource( 119 ), ExtResource( 120 ), ExtResource( 122 ), ExtResource( 123 ), ExtResource( 152 ), ExtResource( 147 ), ExtResource( 148 ), ExtResource( 149 ), ExtResource( 150 ), ExtResource( 151 ), ExtResource( 112 ), ExtResource( 113 ), ExtResource( 114 ) ],
 "loop": true,
 "name": "PBoy",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
@@ -155,7 +197,7 @@ shape = SubResource( 2 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-animation = "Stand"
+animation = "PBoy"
 
 [node name="Minigames" type="Node2D" parent="."]
 
@@ -166,5 +208,11 @@ animation = "Stand"
 [node name="Minigame3" parent="Minigames" instance=ExtResource( 12 )]
 position = Vector2( -16, -5 )
 Self = 3
+
+[node name="Listener2D" type="Listener2D" parent="."]
+current = true
+
+[node name="StepSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 153 )
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_Sprite_animation_finished"]

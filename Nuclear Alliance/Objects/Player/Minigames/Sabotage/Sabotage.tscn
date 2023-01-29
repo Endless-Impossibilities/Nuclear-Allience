@@ -105,7 +105,6 @@ polygon = PoolVector2Array( 41, 31, 33, 40, 40, 51, 48, 57, 59, 51, 54, 40, 48, 
 position = Vector2( 40, 31 )
 frames = SubResource( 7 )
 animation = "off"
-frame = 1
 playing = true
 
 [node name="HeatRay" type="Node2D" parent="ButtonManager"]

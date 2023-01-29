@@ -11,6 +11,11 @@ var active = false
 #Decreases by 5 each cycle
 var playerColliding = false
 
+var overHeat = 0.0
+
+var alarmPlaying = false
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Globals.Wtr1 = Globals.MaxWtr
@@ -41,12 +46,45 @@ func End(callingPlayer):
 		broken = false
 	
 func _physics_process(_delta):
+	
+	if overHeat > 0:
+		get_tree().call_group("BackDrop","checkOverheat",player,overHeat)
+	
+	## Plays Audio For emergency alarm ##
+	if player == 2 && Globals.Wtr2 <= 1500:
+		if alarmPlaying == false:
+			$AudioStreamPlayer2D.play()
+			alarmPlaying = true
+		$AudioStreamPlayer2D.pitch_scale = -(Globals.Wtr2 / Globals.MaxWtr) + 2
+		$AudioStreamPlayer2D.volume_db = lerp($AudioStreamPlayer2D.volume_db,-((Globals.Wtr1 / Globals.MaxWtr) * 2) - 10,0.05)
+	elif player == 1 && Globals.Wtr1 <= 1500:
+		if alarmPlaying == false:
+			$AudioStreamPlayer2D.play()
+			alarmPlaying = true
+		$AudioStreamPlayer2D.pitch_scale = -(Globals.Wtr1 / Globals.MaxWtr) + 2
+		$AudioStreamPlayer2D.volume_db = lerp($AudioStreamPlayer2D.volume_db,-((Globals.Wtr1 / Globals.MaxWtr) * 2) - 10,0.05)
+	else:
+		$AudioStreamPlayer2D.volume_db = lerp($AudioStreamPlayer2D.volume_db,-80,0.05)
+		alarmPlaying == false
+	
+	
+	
+	
+	
 	if player == 1 && Globals.Wtr1 >= 0:
-		Globals.Wtr1 -= 1
+		if overHeat <= 0:
+			Globals.Wtr1 -= 1
+		if overHeat > 0:
+			Globals.Wtr1 -= 3
+			overHeat -= 1
 		if Globals.Wtr1 < Globals.MaxWtr *.75 && active == false:
 			broken = true
 	if player == 2 && Globals.Wtr1 >= 0:
-		Globals.Wtr2 -= 1
+		if overHeat <= 0:
+			Globals.Wtr2 -= 1
+		if overHeat > 0:
+			Globals.Wtr2 -= 3
+			overHeat -= 1
 		if Globals.Wtr2 < Globals.MaxWtr *.75 && active == false:
 			broken = true
 	if broken == true && active == false && playerColliding == true:
@@ -55,4 +93,16 @@ func _physics_process(_delta):
 	else:
 		$AnimatedSprite.play("Idle")
 
+func overHeat(CallingStation):
+	if CallingStation == player:
+		overHeat = 10*60
 
+
+
+## Resets audio after delay for alarm ##
+func _on_AudioStreamPlayer2D_finished():
+	if alarmPlaying == true:
+		$AudioStreamPlayer2D.playing = false
+		yield(get_tree().create_timer(0.25),"timeout")
+		$AudioStreamPlayer2D.playing = true
+		$AudioStreamPlayer2D.play()

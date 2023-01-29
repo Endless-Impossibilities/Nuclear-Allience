@@ -46,7 +46,6 @@ func _ready():
 
 ### Everything that happens on a every-frame basis ###
 func _physics_process(_delta):
-	print(gameHovered)
 
 ## Detects keystrokes for movement and flips the player sprite & collision accordingly ##
 	if gameMode == false:
@@ -97,6 +96,16 @@ func _physics_process(_delta):
 			get_tree().call_group("Minigame","Game",gameHovered,player)
 			gameHovered = 0
 			gameMode = true
+	
+	## Plays Step Sound effect
+	
+	if $Sprite.animation == "Walk":
+		if $Sprite.frame == 1 or $Sprite.frame == 4:
+			$StepSound.play()
+			$StepSound.volume_db = -3
+			yield(get_tree().create_timer(0.04),"timeout")
+			$StepSound.volume_db = -80
+			$StepSound.playing = false
 
 ### Gets what minigame is currently in interact range of the player if any ###
 func Play(connectingGame, connectingGamePlayer):
@@ -119,6 +128,13 @@ func Animate(ConnectingGamePlayer,Anim,offset):
 
 func _on_Sprite_animation_finished():
 	if $Sprite.animation == "HeatRay" or $Sprite.animation == "Tazer" or $Sprite.animation == "PBoy":
+		if $Sprite.animation == "HeatRay":
+			get_tree().call_group("BackDrop","Animate","HeatRay",player)
+		if $Sprite.animation == "Tazer":
+			get_tree().call_group("PwrBxSM","overload",player)
+
+			
 		$Sprite.play("Stand")
 		gameMode = false
 		$Sprite.position = Vector2(0,0)
+
