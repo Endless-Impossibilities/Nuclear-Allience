@@ -96,7 +96,7 @@ Text = "→ "
 Key = "Right2"
 
 [node name="Letter5" parent="Overlay2" instance=ExtResource( 8 )]
-position = Vector2( 9, -16 )
+position = Vector2( 10, -12 )
 Text = "ctrl"
 Key = "Interact2"
 

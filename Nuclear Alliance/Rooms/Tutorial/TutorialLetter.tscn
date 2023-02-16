@@ -36,6 +36,5 @@ margin_right = 7.0
 margin_bottom = 10.0
 theme = SubResource( 2 )
 custom_fonts/font = ExtResource( 2 )
-text = "w"
 valign = 1
 uppercase = true

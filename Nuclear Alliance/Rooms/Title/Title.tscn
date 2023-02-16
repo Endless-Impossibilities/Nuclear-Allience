@@ -27,19 +27,21 @@ texture_hover = ExtResource( 1 )
 expand = true
 stretch_mode = 2
 script = ExtResource( 8 )
+destination = "res://Rooms/SplitScreenRenderer.tscn"
 
 [node name="Play2" type="TextureButton" parent="."]
 margin_left = 34.0
 margin_top = 72.0
 margin_right = 195.0
 margin_bottom = 191.0
-disabled = true
 texture_normal = ExtResource( 7 )
 texture_pressed = ExtResource( 4 )
 texture_hover = ExtResource( 4 )
 texture_disabled = ExtResource( 4 )
 expand = true
 stretch_mode = 2
+script = ExtResource( 8 )
+destination = "res://Rooms/Tutorial/Tutorial.tscn"
 
 [node name="Play3" type="TextureButton" parent="."]
 margin_left = 34.0
@@ -54,5 +56,8 @@ texture_hover = ExtResource( 6 )
 texture_disabled = ExtResource( 6 )
 expand = true
 stretch_mode = 2
+script = ExtResource( 8 )
 
 [connection signal="pressed" from="Play" to="Play" method="_on_Play_pressed"]
+[connection signal="pressed" from="Play2" to="Play2" method="_on_Play_pressed"]
+[connection signal="pressed" from="Play3" to="Play3" method="_on_Play_pressed"]

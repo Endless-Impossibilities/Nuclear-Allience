@@ -25,10 +25,11 @@ func _physics_process(delta):
 		$Label.modulate = Color("#6fa470")
 
 ## Resized the sprite for player 2 interact ##
-	if Text == "ctrl":
-		Fnt.size = 6
-		$Up1.scale = Vector2(1.5,.75)
-		$Label.rect_scale = Vector2(1,1)
+	if "ctrl" in Text:
+		$Up1.scale.x = 2
+		$Up1.position = Vector2(2,-6)
+		
+		$Label.rect_scale = Vector2(0.5,0.5)
 		$Label.rect_position = Vector2(-12,-10)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
