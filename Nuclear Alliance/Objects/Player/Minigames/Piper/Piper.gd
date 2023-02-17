@@ -13,6 +13,12 @@ var breaksRemaining = 3
 # The player that is currently asking to play this game
 var calledPlayer = 0
 
+#Preload the path for the punctures
+var pips = load("res://Objects/Player/Minigames/Piper/Puncture.tscn")
+
+#Load the path the into an instance
+var suc = pips.instance()
+
 ### Makes sure the minigame is ready ###
 func _ready():
 	self.position = Vector2(1000,1000)
@@ -25,6 +31,9 @@ func Game(Game, callingPlayer):
 
 ## Makes sure that it is the minigame being requested ##
 	if (Game == Self && callingPlayer == attachedPlayer):
+		print("Did you know?")
+		
+	
 	
 	## Prepares the minigame ##
 		get_tree().call_group("PiperSM","Running",attachedPlayer)
@@ -39,16 +48,6 @@ func Game(Game, callingPlayer):
 		if calledPlayer == 2:
 			$Overlay2.visible = true
 	
-	## Places the breakpoints ##
-		$Break1.position.x = rand_range(-16,9)
-		$Break2.position.x = rand_range(-16,9)
-		$Break3.position.x = rand_range(-16,9)
-		$Break1.position.y = rand_range(-36,7)
-		$Break2.position.y = rand_range(-36,7)
-		$Break3.position.y = rand_range(-36,7)
-		$Break1.Break()
-		$Break2.Break()
-		$Break3.Break()
  
 ### Ends the minigame ###
 func Quit():
@@ -70,3 +69,7 @@ func Fix():
 	breaksRemaining -= 1
 	if breaksRemaining <= 0:
 		Quit()
+
+func punc(puncX,puncY):
+	add_child(suc)
+	suc.position = Vector2(puncX,puncY)
