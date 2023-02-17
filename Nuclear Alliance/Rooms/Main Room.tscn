@@ -43,6 +43,7 @@ player = 1
 
 [node name="PiperS" parent="TopRoom" instance=ExtResource( 11 )]
 position = Vector2( 336, -26 )
+player = 1
 
 [node name="Puncture" parent="TopRoom" instance=ExtResource( 12 )]
 position = Vector2( 344, 2 )

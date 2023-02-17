@@ -4,7 +4,7 @@ var active = false
 var attachedPlayer = 0
 var PreviousX = 0
 var PreviousY = 0
-var Soddering = false
+var Taping = false
 var Fixing = false
 var breakFixing = Node2D
 func _ready():
@@ -29,11 +29,11 @@ func _physics_process(delta):
 				self.position = Vector2(self.position.x +0,self.position.y + 1)
 			
 			if Input.is_action_pressed("Interact1"):
-				Soddering = true
+				Taping = true
 				$CPUParticles2D.emitting = true
 				$CPUParticles2D2.emitting = true
 			else:
-				Soddering = false
+				Taping = false
 				$CPUParticles2D.emitting = false
 				$CPUParticles2D2.emitting = false
 	
@@ -48,26 +48,19 @@ func _physics_process(delta):
 				self.position = Vector2(self.position.x +0,self.position.y + 1)
 			
 			if Input.is_action_pressed("Interact2"):
-				Soddering = true
+				Taping = true
 				$CPUParticles2D.emitting = true
 				$CPUParticles2D2.emitting = true
 			else:
-				Soddering = false
+				Taping = false
 				$CPUParticles2D.emitting = false
 				$CPUParticles2D2.emitting = false
 				
 	
 	
-	if Soddering == true && Fixing == true:
-		breakFixing.SelfDestruct()
-		$"..".Fix()
+	if Taping == true && Fixing == true:
 		Fixing = false
 	
-	if (self.position.x >= 16 or self.position.x <= -22):
-		self.position.x = PreviousX
-	if (self.position.y >= 26 or self.position.y <= -31):
-		self.position.y = PreviousY
-		
 
 
 

@@ -210,6 +210,7 @@ position = Vector2( -16, -5 )
 Self = 3
 
 [node name="Minigame4" parent="Minigames" instance=ExtResource( 154 )]
+position = Vector2( -35, -32 )
 
 [node name="Listener2D" type="Listener2D" parent="."]
 current = true
