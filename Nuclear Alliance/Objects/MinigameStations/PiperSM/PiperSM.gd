@@ -21,7 +21,7 @@ func _ready():
 func _on_Area2D_body_entered(body):
 	if broken == true && active == false:
 		$AnimatedSprite.play("Hovered")
-		get_tree().call_group("Player","Play",1,player)
+		get_tree().call_group("Player","Play",4,player)
 
 
 func _on_Area2D_body_exited(body):
@@ -58,6 +58,6 @@ func _on_Timer_timeout():
 	$Timer.wait_time = timerLength
 	broken = true
 	if player == 1:
-		get_tree().call_group("HUD","Power",false,1)
+		get_tree().call_group("Pipes","punc",16,11)
 	if player == 2:
-		get_tree().call_group("HUD","Power",false,2)
+		get_tree().call_group("Pipes","punc",12,8)
