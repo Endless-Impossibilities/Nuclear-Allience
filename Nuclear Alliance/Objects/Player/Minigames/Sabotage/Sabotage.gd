@@ -25,6 +25,7 @@ func _physics_process(delta):
 		if $Cursor.hovered == "Tazer":
 			Quit(attachedPlayer)
 			get_tree().call_group("Player","Animate",attachedPlayer,"Tazer",Vector2(3,0))
+			get_tree().call_group("SbtgeSM","End",attachedPlayer)
 			$Cursor.hovered = "None"
 		if $Cursor.hovered == "PBoy":
 			Quit(attachedPlayer)
@@ -41,6 +42,7 @@ func _physics_process(delta):
 		if $Cursor.hovered == "Tazer":
 			Quit(attachedPlayer)
 			get_tree().call_group("Player","Animate",attachedPlayer,"Tazer",Vector2(3,0))
+			get_tree().call_group("SbtgeSM","End",attachedPlayer)
 			$Cursor.hovered = "None"
 		if $Cursor.hovered == "PBoy":
 			Quit(attachedPlayer)
