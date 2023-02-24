@@ -11,13 +11,16 @@ var active = false
 var hovered = false
 #The amount of time it takes for the station to be marked broken
 #Decreases by 5 each cycle
-var timerLength = 30 + rand_range(-3,3)
+var timerLength = 30
 
 var overloading = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	randomize()
 	$AudioStreamPlayer.volume_db = -80.0
+	$Timer.wait_time = 30
+	$Timer.start()
 
 
 
@@ -48,8 +51,7 @@ func End(callingPlayer):
 
 
 
-func _physics_process(_delta):
-	
+func _physics_process(_delta):	
 	#Highlights sprite when broken and a player is nearby
 	if broken == true && active == false && hovered == true && overloading == false:
 			$AnimatedSprite.play("Hovered")
@@ -62,7 +64,7 @@ func _physics_process(_delta):
 			$AudioStreamPlayer.volume_db = -80
 		if broken == true:
 			$AnimatedSprite.play("Broken")
-			$AudioStreamPlayer.volume_db = -20
+			$AudioStreamPlayer.volume_db = -5
 			
 	#Updates hud
 	if broken == true:
@@ -84,10 +86,6 @@ func _on_Timer_timeout():
 	$Timer.wait_time = timerLength
 	broken = true
 
-
-#Keeps alarm playing at all times
-func _on_AudioStreamPlayer_finished():
-		$AudioStreamPlayer.play()
 
 #Handels this station being sabotaged
 func overload(callingPlayer):

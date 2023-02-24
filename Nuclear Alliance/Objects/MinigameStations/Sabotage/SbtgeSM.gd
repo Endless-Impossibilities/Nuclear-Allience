@@ -8,7 +8,7 @@ var avalible = false
 #Weather or not the game is currently in use
 var active = false
 #The amount of time it takes for the station to be available
-var time = 60*60
+var time = 0
 var maxTime = 60*60
 
 
@@ -32,6 +32,7 @@ func End(callingPlayer):
 		active = false
 		avalible = false
 		time = maxTime
+		get_tree().call_group("Player","Play",0,player)
 
 	
 func _physics_process(delta):
