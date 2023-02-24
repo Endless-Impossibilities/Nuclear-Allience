@@ -102,12 +102,10 @@ func _physics_process(_delta):
 	## Plays Step Sound effect
 	
 	if $Sprite.animation == "Walk":
-		if $Sprite.frame == 1 or $Sprite.frame == 4:
+		if $Sprite.frame == 0 or $Sprite.frame == 5:
 			if stepping == false:
 				$StepSound.play()
-				stepping = true
-				yield(get_tree().create_timer(0.16),"timeout")
-				stepping = false
+
 
 
 ### Gets what minigame is currently in interact range of the player if any ###

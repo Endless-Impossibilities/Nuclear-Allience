@@ -217,7 +217,7 @@ current = true
 
 [node name="StepSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 153 )
-volume_db = -10.0
+volume_db = -17.0
 pitch_scale = 1.5
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_Sprite_animation_finished"]
