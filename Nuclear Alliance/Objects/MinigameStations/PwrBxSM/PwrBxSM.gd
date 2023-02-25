@@ -15,6 +15,10 @@ var timerLength = 30
 
 var overloading = false
 
+#The amount of time before a game over
+var gameOverTimer = 15*60
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
@@ -53,12 +57,12 @@ func End(callingPlayer):
 
 func _physics_process(_delta):	
 	#Highlights sprite when broken and a player is nearby
-	if broken == true && active == false && hovered == true && overloading == false:
+	if broken && !active && hovered && !overloading:
 			$AnimatedSprite.play("Hovered")
 			get_tree().call_group("Player","Play",1,player)
 	
 	#Other sprite states
-	if (overloading == false && hovered == false) or (overloading == false && broken == false):
+	if (!overloading && !hovered) or (!overloading && !broken):
 		if broken == false:
 			$AnimatedSprite.play("Idle")
 			$AudioStreamPlayer.volume_db = -80
@@ -66,12 +70,23 @@ func _physics_process(_delta):
 			$AnimatedSprite.play("Broken")
 			$AudioStreamPlayer.volume_db = -5
 			
-	#Updates hud
+	#Updates hud and counts time before game over
 	if broken == true:
 		if player == 1:
 			get_tree().call_group("HUD","Power",false,1)
 		if player == 2:
 			get_tree().call_group("HUD","Power",false,2)
+			
+		gameOverTimer -= 1
+	# Resets gameOverTimer when not broken
+	else:
+		gameOverTimer = 15*60
+
+	#Ends game when gameOverTime expires
+	if gameOverTimer <= 0:
+		Globals.failType = "PowerFail"
+		Globals.playerFailed = player
+		get_tree().change_scene("res://Rooms/Game-Over/GameOver.tscn")
 	
 	#Disables breaking timer when player is fixing it
 	if active == true:
