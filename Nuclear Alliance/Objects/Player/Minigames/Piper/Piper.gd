@@ -7,17 +7,16 @@ export var Self = 0
 # The player that this minigame is intended to run for
 var attachedPlayer = 0
 
-# How many breakpoints still need to be fixed
-var breaksRemaining = 3
-
 # The player that is currently asking to play this game
 var calledPlayer = 0
 
-#Preload the path for the punctures
-var pips = load("res://Objects/Player/Minigames/Piper/Puncture.tscn")
+var running = false
 
-#Load the path the into an instance
-var suc = pips.instance()
+var selectedPipe = 1
+var pipeState = [0,0,0,0]
+var punctureState = [0,0,0,0,0]
+var gameState = "Select"
+
 
 ### Makes sure the minigame is ready ###
 func _ready():
@@ -25,21 +24,57 @@ func _ready():
 func _physics_process(delta):
 	$Cursor.attachedPlayer = attachedPlayer
 	
+##Moves Cursor##
+	$Cursor.position.x = (selectedPipe -1)*18
+	
+	
+##Logic for selecting a pipe##
+	if gameState == "Select" && running:
+	
+	##Cursor Left##
+		if Input.is_action_just_released("Left" + str(attachedPlayer)):
+			if selectedPipe == 1:
+				selectedPipe = 4
+			else:
+				selectedPipe -= 1
+	##Cursor Right##
+		if Input.is_action_just_released("Right" + str(attachedPlayer)):
+			if selectedPipe == 4:
+				selectedPipe = 1
+			else:
+				selectedPipe += 1
+	##Select Pipe
+		if Input.is_action_just_released("Interact" + str(attachedPlayer)):
+			$Cursor.active = true
+			gameState = "Play"
+	##Updates Pipe Sprites and states##
+		for i in [1,2,3,4]:
+			var currentPipe = get_node("Pipes/Pipe" + str(i))
+			print(pipeState)
+			if i == selectedPipe:
+				currentPipe.play("On")
+				pipeState[i - 1] = 1
+				
+			else:
+				currentPipe.play("Off")
+				pipeState[i - 1] = 0
+
+
+
 	
 	### Game Loop ###
 func Game(Game, callingPlayer):
 
 ## Makes sure that it is the minigame being requested ##
 	if (Game == Self && callingPlayer == attachedPlayer):
-		print("Did you know?")
+		running = true
 		
 	
 	
 	## Prepares the minigame ##
 		get_tree().call_group("PiperSM","Running",attachedPlayer)
-		self.position = Vector2(-10,0)
+		self.position = Vector2(-35,-41)
 		$Cursor.active = true
-		breaksRemaining = 3
 		calledPlayer = callingPlayer
 	
 	## Calls the right key prompts ##
@@ -53,6 +88,7 @@ func Game(Game, callingPlayer):
 func Quit():
 
 ## Resets minigame ##
+	running = false
 	self.position = Vector2(1000,1000)
 	$Cursor.active = false
 	$Cursor.position = Vector2(0,0)
@@ -66,10 +102,6 @@ func Quit():
 
 ### Handels breaks being fixed ###
 func Fix():
-	breaksRemaining -= 1
-	if breaksRemaining <= 0:
-		Quit()
-
-func punc(puncX,puncY):
-	add_child(suc)
-	suc.position = Vector2(puncX,puncY)
+	pass
+	#if breaksRemaining <= 0:
+	#	Quit()

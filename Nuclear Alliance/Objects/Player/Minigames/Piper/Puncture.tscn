@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Objects/Player/Minigames/Piper/PipeBreakCollider.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Player/Minigames/Piper/Breakpipe.gd" type="Script" id=2]
@@ -9,14 +9,11 @@
 blend_mode = 1
 
 [sub_resource type="Gradient" id=2]
-offsets = PoolRealArray( 0.0335196, 0.55914, 1 )
-colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 0.0705882, 1, 1, 1, 0 )
+offsets = PoolRealArray( 0.27957, 0.645161, 0.888889 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 0.109804, 1, 1, 1, 0 )
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 1.25502, 1.24465 )
-
-[sub_resource type="CanvasItemMaterial" id=9]
-blend_mode = 2
 
 [node name="Puncture" type="Node2D"]
 position = Vector2( 0.5, 0.5 )
@@ -27,8 +24,8 @@ modulate = Color( 0, 0.94902, 1, 1 )
 self_modulate = Color( 0, 0.94902, 1, 1 )
 material = SubResource( 8 )
 scale = Vector2( 2, 2 )
-amount = 10
-speed_scale = 8.0
+amount = 30
+speed_scale = 4.0
 texture = ExtResource( 3 )
 emission_shape = 1
 emission_sphere_radius = 10.0
@@ -51,7 +48,6 @@ shape = SubResource( 3 )
 
 [node name="Sprite2" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0.670588 )
-material = SubResource( 9 )
 position = Vector2( -0.5, -0.5 )
 texture = ExtResource( 4 )
 centered = false
