@@ -1,0 +1,248 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://Objects/Player/Minigames/Piper/Piper.gd" type="Script" id=1]
+[ext_resource path="res://Objects/Player/Minigames/Piper/TapeRoll.png" type="Texture" id=2]
+[ext_resource path="res://Objects/Player/Minigames/Piper/PipeCursor.gd" type="Script" id=3]
+[ext_resource path="res://Objects/Player/Minigames/Piper/Pipes/Off/4.png" type="Texture" id=4]
+[ext_resource path="res://Objects/Player/Minigames/Piper/Pipes/On/4.png" type="Texture" id=5]
+[ext_resource path="res://Objects/Player/Minigames/Piper/Pipes/On/3.png" type="Texture" id=6]
+[ext_resource path="res://Objects/Letters/Letter.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Objects/Player/Minigames/Piper/Pipes/On/1.png" type="Texture" id=9]
+[ext_resource path="res://Objects/Player/Minigames/Piper/Pipes/Off/1.png" type="Texture" id=10]
+[ext_resource path="res://Objects/Player/Minigames/Piper/Pipes/Off/2.png" type="Texture" id=11]
+[ext_resource path="res://Objects/Player/Minigames/Piper/Pipes/Off/3.png" type="Texture" id=12]
+[ext_resource path="res://Objects/Player/Minigames/Piper/Pipes/On/2.png" type="Texture" id=13]
+[ext_resource path="res://Objects/Player/Minigames/Piper/Puncture.tscn" type="PackedScene" id=15]
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "Off",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "On",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=13]
+extents = Vector2( 9, 29 )
+
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [ ExtResource( 11 ) ],
+"loop": true,
+"name": "Off",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ) ],
+"loop": true,
+"name": "On",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 9, 29 )
+
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ ExtResource( 12 ) ],
+"loop": true,
+"name": "Off",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "On",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 9, 29 )
+
+[sub_resource type="SpriteFrames" id=9]
+animations = [ {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "Off",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "On",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 9, 29 )
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 9, 2 )
+
+[node name="Minigame4" type="Node2D" groups=["Minigame", "Pipes"]]
+script = ExtResource( 1 )
+Self = 4
+
+[node name="Overlay1" type="Node2D" parent="."]
+visible = false
+position = Vector2( 7, 31 )
+
+[node name="Letter" parent="Overlay1" instance=ExtResource( 8 )]
+position = Vector2( 29, -38 )
+Text = "W"
+Key = "Up1"
+
+[node name="Letter2" parent="Overlay1" instance=ExtResource( 8 )]
+position = Vector2( 19, -22 )
+Text = "A"
+Key = "Left1"
+
+[node name="Letter3" parent="Overlay1" instance=ExtResource( 8 )]
+position = Vector2( 35, -22 )
+Text = "S"
+Key = "Down1"
+
+[node name="Letter4" parent="Overlay1" instance=ExtResource( 8 )]
+position = Vector2( 51, -22 )
+Text = "D"
+Key = "Right1"
+
+[node name="Letter5" parent="Overlay1" instance=ExtResource( 8 )]
+position = Vector2( 45, -38 )
+Text = "E"
+Key = "Interact1"
+
+[node name="Overlay2" type="Node2D" parent="."]
+visible = false
+position = Vector2( 21, 25 )
+
+[node name="Letter" parent="Overlay2" instance=ExtResource( 8 )]
+position = Vector2( 21, -52 )
+Text = "↑ "
+Key = "Up2"
+
+[node name="Letter2" parent="Overlay2" instance=ExtResource( 8 )]
+position = Vector2( 5, -36 )
+Text = "← "
+Key = "Left2"
+
+[node name="Letter3" parent="Overlay2" instance=ExtResource( 8 )]
+position = Vector2( 21, -36 )
+Text = "↓ "
+Key = "Down2"
+
+[node name="Letter4" parent="Overlay2" instance=ExtResource( 8 )]
+position = Vector2( 37, -36 )
+Text = "→ "
+Key = "Right2"
+
+[node name="Letter5" parent="Overlay2" instance=ExtResource( 8 )]
+position = Vector2( 9, -16 )
+Text = "ctrl"
+Key = "Interact2"
+
+[node name="Puncture" parent="Overlay2" instance=ExtResource( 15 )]
+position = Vector2( 4.5, 6.5 )
+
+[node name="Pipes" type="Node2D" parent="."]
+
+[node name="Pipe1" type="AnimatedSprite" parent="Pipes"]
+frames = SubResource( 6 )
+animation = "Off"
+centered = false
+
+[node name="PipeCheck1" type="Area2D" parent="Pipes/Pipe1"]
+collision_layer = 0
+collision_mask = 4096
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pipes/Pipe1/PipeCheck1"]
+position = Vector2( 9, 29 )
+shape = SubResource( 13 )
+
+[node name="Pipe2" type="AnimatedSprite" parent="Pipes"]
+frames = SubResource( 7 )
+animation = "Off"
+centered = false
+
+[node name="PipeCheck2" type="Area2D" parent="Pipes/Pipe2"]
+position = Vector2( 24, 2 )
+collision_layer = 0
+collision_mask = 4096
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pipes/Pipe2/PipeCheck2"]
+position = Vector2( 3, 27 )
+shape = SubResource( 10 )
+
+[node name="Pipe3" type="AnimatedSprite" parent="Pipes"]
+frames = SubResource( 8 )
+animation = "Off"
+centered = false
+
+[node name="PipeCheck3" type="Area2D" parent="Pipes/Pipe3"]
+collision_layer = 0
+collision_mask = 4096
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pipes/Pipe3/PipeCheck3"]
+position = Vector2( 45, 29 )
+shape = SubResource( 11 )
+
+[node name="Pipe4" type="AnimatedSprite" parent="Pipes"]
+frames = SubResource( 9 )
+animation = "Off"
+centered = false
+
+[node name="PipeCheck4" type="Area2D" parent="Pipes/Pipe4"]
+collision_layer = 0
+collision_mask = 4096
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pipes/Pipe4/PipeCheck4"]
+position = Vector2( 63, 29 )
+shape = SubResource( 12 )
+
+[node name="Cursor" type="KinematicBody2D" parent="."]
+position = Vector2( 2, 22 )
+collision_layer = 0
+collision_mask = 0
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="Cursor"]
+position = Vector2( -6, -14 )
+texture = ExtResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="Cursor"]
+position = Vector2( -1, -1 )
+collision_layer = 0
+collision_mask = 4096
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cursor/Area2D"]
+position = Vector2( 8, -7 )
+shape = SubResource( 1 )
+
+[node name="Punctures" type="Node2D" parent="."]
+
+[node name="Puncture1" parent="Punctures" instance=ExtResource( 15 )]
+position = Vector2( 0, -100 )
+
+[node name="Puncture2" parent="Punctures" instance=ExtResource( 15 )]
+position = Vector2( 0, -100 )
+
+[node name="Puncture3" parent="Punctures" instance=ExtResource( 15 )]
+position = Vector2( 0, -100 )
+
+[node name="Puncture4" parent="Punctures" instance=ExtResource( 15 )]
+position = Vector2( 0, -100 )
+
+[node name="Puncture5" parent="Punctures" instance=ExtResource( 15 )]
+position = Vector2( 0, -100 )
+
+[node name="Dummy" type="Node2D" parent="."]
+position = Vector2( -51, 52 )
+
+[connection signal="area_entered" from="Pipes/Pipe1/PipeCheck1" to="." method="_on_PipeCheck1_area_entered"]
+[connection signal="area_entered" from="Pipes/Pipe2/PipeCheck2" to="." method="_on_PipeCheck2_area_entered"]
+[connection signal="area_entered" from="Pipes/Pipe3/PipeCheck3" to="." method="_on_PipeCheck3_area_entered"]
+[connection signal="area_entered" from="Pipes/Pipe4/PipeCheck4" to="." method="_on_PipeCheck4_area_entered"]
+[connection signal="area_entered" from="Cursor/Area2D" to="Cursor" method="_on_Area2D_area_entered"]
+[connection signal="area_exited" from="Cursor/Area2D" to="Cursor" method="_on_Area2D_area_exited"]
