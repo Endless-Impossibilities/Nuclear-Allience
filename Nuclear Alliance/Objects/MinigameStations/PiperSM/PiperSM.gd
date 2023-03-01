@@ -7,29 +7,40 @@ export var player = 0
 var broken = false
 #Weather or not the game is currently in use
 var active = false
-#The amount of time it takes for the station to be marked broken
-#Decreases by 5 each cycle
-var timerLength = 15 + rand_range(-3,3)
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	$Timer.wait_time = 15 + rand_range(-3,3)
+var playerClose = false
+
+var numPunctures = 0
+
+var currentPuncture = 0
+
+var miniPuncture = preload("res://Objects/MinigameStations/PiperSM/MiniPuncture.tscn")
 
 
 
 #Highlights the station's sprite if it is broken and the player is nearby
 func _on_Area2D_body_entered(body):
+	playerClose = true
 	if broken == true && active == false:
 		$AnimatedSprite.play("Hovered")
 		get_tree().call_group("Player","Play",4,player)
 
+func _physics_process(_delta):
+	if numPunctures >= 1:
+		broken = true
+	
+	if playerClose:
+		if broken == true && active == false:
+			$AnimatedSprite.play("Hovered")
+			get_tree().call_group("Player","Play",4,player)
+		else:
+			get_tree().call_group("Player","Play",0,player)
+			$AnimatedSprite.play("Idle")
+
 
 func _on_Area2D_body_exited(body):
-		if broken == false:
-			$AnimatedSprite.play("Idle")
-		if broken == true:
-			$AnimatedSprite.play("Broken")
-		get_tree().call_group("Player","Play",0, player)
+	playerClose = false
+	get_tree().call_group("Player","Play",0, player)
 
 #Makes it so the player can't activate the game by marking it as active
 func Running():
@@ -45,19 +56,8 @@ func End(callingPlayer):
 			get_tree().call_group("HUD","Power",true,1)
 		if player == 2:
 			get_tree().call_group("HUD","Power",true,2)
-	
-func _physics_process(_delta):
+
+func addPuncture(callingGame,x,y):
 	pass
 
 
-
-
-func _on_Timer_timeout():
-	timerLength -= 2 + rand_range(-1,1)
-	$Timer.stop()
-	$Timer.wait_time = timerLength
-	broken = true
-	if player == 1:
-		get_tree().call_group("Pipes","punc",16,11)
-	if player == 2:
-		get_tree().call_group("Pipes","punc",12,8)

@@ -19,15 +19,39 @@ var gameState = "Idle"
 var puncturePositions = [0,0,0,0]
 var totalActivePunctures = 0
 
+#Timer for new Breaks
+var maxTime = 15.0*60.0
+var timeLeft = 15.0*60.0
+
+
+
+
+var tape = preload("res://Objects/Player/Minigames/Piper/Tape.tscn")
+
+
 ### Makes sure the minigame is ready ###
 func _ready():
+	timeLeft += rand_range(0.5*60,-0.5*60)
+	Break()
 	self.position = Vector2(1000,1000)
 	randomize()
-	Break()
 	puncturePositions[1] = 0
+
+
+
 func _physics_process(delta):
+	
+#Timer for new Punctures
+	if timeLeft >= 0:
+		maxTime -= 0.5*60 + rand_range(0.5*60,-0.5*60)
+		timeLeft = maxTime
+		Break()
+	timeLeft -= 1
+	
+	
 	$Cursor.attachedPlayer = attachedPlayer
 	
+	get_node("Overlay" + str(attachedPlayer)).visible = true
 	
 ##Checks which punctures are idle##
 	for i in range(5):
@@ -70,10 +94,11 @@ func _physics_process(delta):
 					selectedPipe += 1
 
 		##Select Pipe
-			if Input.is_action_just_pressed("Interact" + str(attachedPlayer)):
+			if Input.is_action_just_released("Interact" + str(attachedPlayer)):
 				if puncturePositions[selectedPipe - 1] >= 1:
 						$Cursor.active = true
 						gameState = "Play"
+
 
 
 
@@ -122,55 +147,49 @@ func Game(Game, callingPlayer):
 	
  
 ### Ends the minigame ###
-func Quit():
+func Quit(PunctureX,PunctureY):
+	
+	var instance = tape.instance()
+	instance.position = Vector2(PunctureX,PunctureY)
+	add_child(instance)
+	
 
 ## Resets minigame ##
-	running = false
-	self.position = Vector2(1000,1000)
-	$Cursor.active = false
-	$Cursor.position = Vector2(0,0)
-	selectedPipe = 1
-	pipeState = [1,0,0,0]
-	gameState = "Idle"
 
-## Tells the player to unlock movement ##
-	get_tree().call_group("Player","Quit",attachedPlayer)
+	if totalActivePunctures >= 2:
+		print("continue")
+		$Cursor.active = false
+		selectedPipe = 1
+		pipeState = [1,0,0,0]
+		gameState = "Select"
+	else:
+		print("End")
+		running = false
+		self.position = Vector2(1000,1000)
+		$Cursor.active = false
+		$Cursor.position = Vector2(0,0)
+		selectedPipe = 1
+		pipeState = [1,0,0,0]
+		gameState = "Idle"
 
-## Tells the station to "Fix" it's self and get ready for the next play ##
-	get_tree().call_group("PiperSM","End",attachedPlayer)
-		
+	## Tells the player to unlock movement ##
+		get_tree().call_group("Player","Quit",attachedPlayer)
+	
+	## Tells the station to "Fix" it's self and get ready for the next play ##
+		get_tree().call_group("PiperSM","End",attachedPlayer)
+			
 
-### Handels breaks being fixed ###
-func Fix():
-	pass
-	#if breaksRemaining <= 0:
-	#	Quit()
+
 
 
 func Break():
 	for i in range(5):
 		if punctureState[i] == 0:
-			get_node("Punctures/Puncture" + str(i + 1)).position = Vector2(rand_range(1,71),rand_range(13,52))
+			var Puncture = get_node("Punctures/Puncture" + str(i + 1))
+			Puncture.position = Vector2(rand_range(1,71),rand_range(13,52))
+			Puncture.Active = true
+			puncturePositions[ (Puncture.position.x) / 18 ] += 1
 			punctureState[i] = 1
 			break
 
 
-## Tells where the punctures are at any given time
-func _on_PipeCheck1_area_entered(area):
-	puncturePositions[0] += 1
-	print("1")
-
-
-func _on_PipeCheck2_area_entered(area):
-	puncturePositions[1] += 1
-	print("2")
-
-
-func _on_PipeCheck3_area_entered(area):
-	puncturePositions[2] += 1
-	print("3")
-
-
-func _on_PipeCheck4_area_entered(area):
-	puncturePositions[3] += 1
-	print("4")
