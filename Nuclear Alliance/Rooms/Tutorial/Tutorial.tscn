@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Rooms/Tutorial/Pages/Tutorial2.png" type="Texture" id=1]
 [ext_resource path="res://Rooms/Tutorial/Pages/Tutorial8.png" type="Texture" id=2]
@@ -16,6 +16,8 @@
 [ext_resource path="res://Objects/Player/Minigames/Piper/Puncture.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Rooms/Tutorial/Buttons/Tutorial X1.png" type="Texture" id=15]
 [ext_resource path="res://Rooms/Tutorial/Buttons/Tutorial X2.png" type="Texture" id=16]
+[ext_resource path="res://Objects/Player/Minigames/Piper/TapeRoll.png" type="Texture" id=17]
+[ext_resource path="res://Rooms/Tutorial/FreeCursor.gd" type="Script" id=18]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 light_mode = 1
@@ -196,6 +198,16 @@ position = Vector2( 1073, 80 )
 
 [node name="Puncture2" parent="ViewportContainer/Viewport/Doodads" instance=ExtResource( 14 )]
 position = Vector2( 1100, 101 )
+
+[node name="Cursor" type="KinematicBody2D" parent="ViewportContainer/Viewport/Doodads"]
+position = Vector2( 1067, 75 )
+collision_layer = 0
+collision_mask = 0
+script = ExtResource( 18 )
+
+[node name="Sprite" type="Sprite" parent="ViewportContainer/Viewport/Doodads/Cursor"]
+position = Vector2( 7, -5 )
+texture = ExtResource( 17 )
 
 [node name="Camera2D" type="Camera2D" parent="ViewportContainer/Viewport"]
 anchor_mode = 0
