@@ -26,9 +26,6 @@ func _on_Area2D_body_entered(body):
 		get_tree().call_group("Player","Play",4,player)
 
 func _physics_process(_delta):
-	if numPunctures >= 1:
-		broken = true
-	
 	if playerClose:
 		if broken == true && active == false:
 			$AnimatedSprite.play("Hovered")
@@ -52,12 +49,16 @@ func End(callingPlayer):
 		active = false
 		broken = false
 		$Timer.start()
-		if player == 1:
-			get_tree().call_group("HUD","Power",true,1)
-		if player == 2:
-			get_tree().call_group("HUD","Power",true,2)
+		for i in range(numPunctures):
+			get_node("miniPuncture" + str(i)).Fix()
 
 func addPuncture(callingGame,x,y):
-	pass
+	if callingGame == player:
+		broken = true
+		var instance = miniPuncture.instance()
+		add_child(instance)
+		instance.position = Vector2(x*0.61,(y*0.61) + 12)
+		instance.name = "miniPuncture" + str(numPunctures)
+		numPunctures += 1
 
 

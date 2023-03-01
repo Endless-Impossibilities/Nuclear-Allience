@@ -23,7 +23,7 @@ var totalActivePunctures = 0
 var maxTime = 15.0*60.0
 var timeLeft = 15.0*60.0
 
-
+var startDelay = 15
 
 
 var tape = preload("res://Objects/Player/Minigames/Piper/Tape.tscn")
@@ -32,7 +32,6 @@ var tape = preload("res://Objects/Player/Minigames/Piper/Tape.tscn")
 ### Makes sure the minigame is ready ###
 func _ready():
 	timeLeft += rand_range(0.5*60,-0.5*60)
-	Break()
 	self.position = Vector2(1000,1000)
 	randomize()
 	puncturePositions[1] = 0
@@ -42,11 +41,18 @@ func _ready():
 func _physics_process(delta):
 	
 #Timer for new Punctures
-	if timeLeft >= 0:
+	if timeLeft <= 0:
 		maxTime -= 0.5*60 + rand_range(0.5*60,-0.5*60)
 		timeLeft = maxTime
 		Break()
 	timeLeft -= 1
+	
+	if running && gameState == "Idle":
+		if startDelay <= 0:
+			startDelay = 15
+			gameState = "Select"
+		else:
+			startDelay -= 1
 	
 	
 	$Cursor.attachedPlayer = attachedPlayer
@@ -137,7 +143,6 @@ func Game(Game, callingPlayer):
 		get_tree().call_group("PiperSM","Running",attachedPlayer)
 		self.position = Vector2(-43,-41)
 		calledPlayer = callingPlayer
-		gameState = "Select"
 	
 	## Calls the right key prompts ##
 		if calledPlayer == 1:
@@ -148,10 +153,10 @@ func Game(Game, callingPlayer):
  
 ### Ends the minigame ###
 func Quit(PunctureX,PunctureY):
-	
 	var instance = tape.instance()
 	instance.position = Vector2(PunctureX,PunctureY)
 	add_child(instance)
+	
 	
 
 ## Resets minigame ##
@@ -161,9 +166,8 @@ func Quit(PunctureX,PunctureY):
 		$Cursor.active = false
 		selectedPipe = 1
 		pipeState = [1,0,0,0]
-		gameState = "Select"
+		gameState = "Idle"
 	else:
-		print("End")
 		running = false
 		self.position = Vector2(1000,1000)
 		$Cursor.active = false
@@ -171,7 +175,6 @@ func Quit(PunctureX,PunctureY):
 		selectedPipe = 1
 		pipeState = [1,0,0,0]
 		gameState = "Idle"
-
 	## Tells the player to unlock movement ##
 		get_tree().call_group("Player","Quit",attachedPlayer)
 	
@@ -190,6 +193,7 @@ func Break():
 			Puncture.Active = true
 			puncturePositions[ (Puncture.position.x) / 18 ] += 1
 			punctureState[i] = 1
+			get_tree().call_group("PiperSM","addPuncture",attachedPlayer,Puncture.position.x,Puncture.position.y)
 			break
 
 

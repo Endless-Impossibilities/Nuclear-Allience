@@ -32,7 +32,6 @@ func _physics_process(delta):
 func _on_Area2D_area_entered(area):
 	overlappingBreak = true
 	Collider = area.get_parent()
-	print(area.get_parent().position.x)
 
 
 func _on_Area2D_area_exited(area):
