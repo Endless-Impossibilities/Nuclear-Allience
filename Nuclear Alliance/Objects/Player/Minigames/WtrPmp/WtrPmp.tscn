@@ -1,14 +1,14 @@
 [gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Objects/Player/Minigames/WtrPmp/WtrPmp.gd" type="Script" id=1]
-[ext_resource path="res://Objects/Player/Minigames/WtrPmp/WtrPmpFront.png" type="Texture" id=2]
-[ext_resource path="res://Objects/Player/Minigames/WtrPmp/WtrPmpBack.png" type="Texture" id=3]
-[ext_resource path="res://Objects/Player/Minigames/WtrPmp/WtrPmpWtr.png" type="Texture" id=4]
-[ext_resource path="res://Objects/Player/Minigames/WtrPmp/MeterMarker.png" type="Texture" id=5]
+[ext_resource path="res://Objects/Player/Minigames/WtrPmp/WtrPmpBorder.png" type="Texture" id=2]
+[ext_resource path="res://Objects/Player/Minigames/WtrPmp/MeterMarker.png" type="Texture" id=3]
+[ext_resource path="res://Objects/Player/Minigames/WtrPmp/WtrPmpBack.png" type="Texture" id=4]
+[ext_resource path="res://Objects/Player/Minigames/WtrPmp/WtrPmpFront.png" type="Texture" id=5]
 [ext_resource path="res://Objects/Player/Minigames/WtrPmp/MeterControl.png" type="Texture" id=6]
 [ext_resource path="res://Objects/Player/Minigames/WtrPmp/MeterBack.png" type="Texture" id=7]
 [ext_resource path="res://Objects/Letters/LetterFont.tres" type="DynamicFont" id=8]
-[ext_resource path="res://Objects/Player/Minigames/WtrPmp/WtrPmpBorder.png" type="Texture" id=9]
+[ext_resource path="res://Objects/Player/Minigames/WtrPmp/WtrPmpWtr.png" type="Texture" id=9]
 [ext_resource path="res://Objects/Letters/On/LettersOn1.png" type="Texture" id=10]
 [ext_resource path="res://Objects/Letters/Off/LettersOff1.png" type="Texture" id=11]
 [ext_resource path="res://Sounds/PunctureSustain.wav" type="AudioStream" id=12]
@@ -36,10 +36,10 @@ Self = 2
 [node name="Plate" type="Node2D" parent="."]
 
 [node name="WtrPmpBack" type="Sprite" parent="Plate"]
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 
 [node name="WtrPmpFront" type="Sprite" parent="Plate"]
-texture = ExtResource( 2 )
+texture = ExtResource( 5 )
 
 [node name="TextureRect" type="TextureRect" parent="Plate"]
 margin_left = -25.0
@@ -54,11 +54,11 @@ __meta__ = {
 
 [node name="WtrPmpWtr" type="Sprite" parent="Plate/TextureRect"]
 position = Vector2( -5, -22 )
-texture = ExtResource( 4 )
+texture = ExtResource( 9 )
 centered = false
 
 [node name="WtrPmpBorder" type="Sprite" parent="."]
-texture = ExtResource( 9 )
+texture = ExtResource( 2 )
 
 [node name="Meter" type="Node2D" parent="."]
 position = Vector2( 0, -5 )
@@ -69,7 +69,7 @@ texture = ExtResource( 7 )
 
 [node name="MeterMarker" type="Sprite" parent="Meter"]
 position = Vector2( -9, -10 )
-texture = ExtResource( 5 )
+texture = ExtResource( 3 )
 centered = false
 
 [node name="MeterControl" type="Sprite" parent="Meter"]

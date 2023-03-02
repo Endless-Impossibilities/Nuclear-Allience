@@ -1,25 +1,38 @@
 [gd_scene load_steps=22 format=2]
 
-[ext_resource path="res://Objects/Player/Minigames/Piper/Piper.gd" type="Script" id=1]
-[ext_resource path="res://Objects/Player/Minigames/Piper/TapeRoll.png" type="Texture" id=2]
-[ext_resource path="res://Objects/Player/Minigames/Piper/PipeCursor.gd" type="Script" id=3]
+[ext_resource path="res://Objects/Player/Minigames/Piper/Puncture.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Objects/Player/Minigames/Piper/Pipes/On/1.png" type="Texture" id=2]
+[ext_resource path="res://Objects/Player/Minigames/Piper/Pipes/On/4.png" type="Texture" id=3]
 [ext_resource path="res://Objects/Player/Minigames/Piper/Pipes/Off/4.png" type="Texture" id=4]
-[ext_resource path="res://Objects/Player/Minigames/Piper/Pipes/On/4.png" type="Texture" id=5]
-[ext_resource path="res://Objects/Player/Minigames/Piper/Pipes/On/3.png" type="Texture" id=6]
+[ext_resource path="res://Objects/Player/Minigames/Piper/Pipes/Off/2.png" type="Texture" id=5]
+[ext_resource path="res://Objects/Player/Minigames/Piper/Pipes/Off/3.png" type="Texture" id=6]
 [ext_resource path="res://Sounds/PunctureIntro.wav" type="AudioStream" id=7]
 [ext_resource path="res://Objects/Letters/Letter.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Objects/Player/Minigames/Piper/Pipes/On/1.png" type="Texture" id=9]
+[ext_resource path="res://Objects/Player/Minigames/Piper/Pipes/On/2.png" type="Texture" id=9]
 [ext_resource path="res://Objects/Player/Minigames/Piper/Pipes/Off/1.png" type="Texture" id=10]
-[ext_resource path="res://Objects/Player/Minigames/Piper/Pipes/Off/2.png" type="Texture" id=11]
-[ext_resource path="res://Objects/Player/Minigames/Piper/Pipes/Off/3.png" type="Texture" id=12]
-[ext_resource path="res://Objects/Player/Minigames/Piper/Pipes/On/2.png" type="Texture" id=13]
+[ext_resource path="res://Objects/Player/Minigames/Piper/Pipes/On/3.png" type="Texture" id=11]
+[ext_resource path="res://Objects/Player/Minigames/Piper/TapeRoll.png" type="Texture" id=12]
+[ext_resource path="res://Objects/Player/Minigames/Piper/Piper.gd" type="Script" id=13]
 [ext_resource path="res://Sounds/SodderFix.wav" type="AudioStream" id=14]
-[ext_resource path="res://Objects/Player/Minigames/Piper/Puncture.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Objects/Player/Minigames/Piper/PipeCursor.gd" type="Script" id=15]
 [ext_resource path="res://Sounds/PunctureSustain.wav" type="AudioStream" id=16]
 
 [sub_resource type="SpriteFrames" id=6]
 animations = [ {
 "frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "Off",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "On",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [ ExtResource( 5 ) ],
 "loop": true,
 "name": "Off",
 "speed": 5.0
@@ -30,27 +43,14 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=7]
-animations = [ {
-"frames": [ ExtResource( 11 ) ],
-"loop": true,
-"name": "Off",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 13 ) ],
-"loop": true,
-"name": "On",
-"speed": 5.0
-} ]
-
 [sub_resource type="SpriteFrames" id=8]
 animations = [ {
-"frames": [ ExtResource( 12 ) ],
+"frames": [ ExtResource( 6 ) ],
 "loop": true,
 "name": "Off",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ) ],
+"frames": [ ExtResource( 11 ) ],
 "loop": true,
 "name": "On",
 "speed": 5.0
@@ -63,7 +63,7 @@ animations = [ {
 "name": "Off",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 5 ) ],
+"frames": [ ExtResource( 3 ) ],
 "loop": true,
 "name": "On",
 "speed": 5.0
@@ -73,7 +73,7 @@ animations = [ {
 extents = Vector2( 9, 2.5 )
 
 [node name="Minigame4" type="Node2D" groups=["Minigame", "Pipes"]]
-script = ExtResource( 1 )
+script = ExtResource( 13 )
 Self = 4
 
 [node name="Overlay1" type="Node2D" parent="."]
@@ -140,11 +140,11 @@ centered = false
 position = Vector2( 0, 13 )
 collision_layer = 0
 collision_mask = 0
-script = ExtResource( 3 )
+script = ExtResource( 15 )
 
 [node name="Sprite" type="Sprite" parent="Cursor"]
 position = Vector2( 7, -5 )
-texture = ExtResource( 2 )
+texture = ExtResource( 12 )
 
 [node name="Area2D" type="Area2D" parent="Cursor"]
 position = Vector2( -1, -1 )
@@ -157,19 +157,19 @@ shape = SubResource( 1 )
 
 [node name="Punctures" type="Node2D" parent="."]
 
-[node name="Puncture1" parent="Punctures" instance=ExtResource( 15 )]
+[node name="Puncture1" parent="Punctures" instance=ExtResource( 1 )]
 position = Vector2( 0, -100 )
 
-[node name="Puncture2" parent="Punctures" instance=ExtResource( 15 )]
+[node name="Puncture2" parent="Punctures" instance=ExtResource( 1 )]
 position = Vector2( 0, -100 )
 
-[node name="Puncture3" parent="Punctures" instance=ExtResource( 15 )]
+[node name="Puncture3" parent="Punctures" instance=ExtResource( 1 )]
 position = Vector2( 0, -100 )
 
-[node name="Puncture4" parent="Punctures" instance=ExtResource( 15 )]
+[node name="Puncture4" parent="Punctures" instance=ExtResource( 1 )]
 position = Vector2( 0, -100 )
 
-[node name="Puncture5" parent="Punctures" instance=ExtResource( 15 )]
+[node name="Puncture5" parent="Punctures" instance=ExtResource( 1 )]
 position = Vector2( 0, -100 )
 
 [node name="SFX" type="Node" parent="."]

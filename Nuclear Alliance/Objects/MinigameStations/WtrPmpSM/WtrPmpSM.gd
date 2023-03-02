@@ -15,7 +15,7 @@ var overHeat = 0.0
 
 var alarmPlaying = false
 
-var startDelay = 15*60
+var startDelay = 25*60
 
 
 # Called when the node enters the scene tree for the first time.
@@ -72,37 +72,38 @@ func _physics_process(_delta):
 	
 	
 	
-	if startDelay <= 0:
-		startDelay -= 1
-		if player == 1:
-			if Globals.Wtr1 >= 0:
+	startDelay -= 1
+	if player == 1:
+		if Globals.Wtr1 >= 0:
+			if startDelay <= 0:
 				if overHeat <= 0:
 					Globals.Wtr1 -= 1
-				if overHeat > 0:
-					Globals.Wtr1 -= 3
-					overHeat -= 1
-				if Globals.Wtr1 < Globals.MaxWtr *.75 && active == false:
-					broken = true
-			else:
-				Globals.failType = "OverHeat"
-				Globals.playerFailed = 1
-				get_tree().call_group("BGLights","blackout")
-				get_tree().call_group("Player","blackout", player)
-		
-		if player == 2:
-			if Globals.Wtr2 >= 0:
+			if overHeat > 0:
+				Globals.Wtr1 -= 3
+				overHeat -= 1
+			if Globals.Wtr1 < Globals.MaxWtr *.75 && active == false:
+				broken = true
+		else:
+			Globals.failType = "OverHeat"
+			Globals.playerFailed = 1
+			get_tree().call_group("BGLights","blackout")
+			get_tree().call_group("Player","blackout", player)
+	
+	if player == 2:
+		if Globals.Wtr2 >= 0:
+			if startDelay <= 0:
 				if overHeat <= 0:
 					Globals.Wtr2 -= 1
-				if overHeat > 0:
-					Globals.Wtr2 -= 3
-					overHeat -= 1
-				if Globals.Wtr2 < Globals.MaxWtr *.75 && active == false:
-					broken = true
-			else:
-				Globals.failType = "OverHeat"
-				Globals.playerFailed = 2
-				get_tree().call_group("BGLights","blackout")
-				get_tree().call_group("Player","blackout", player)
+			if overHeat > 0:
+				Globals.Wtr2 -= 3
+				overHeat -= 1
+			if Globals.Wtr2 < Globals.MaxWtr *.75 && active == false:
+				broken = true
+		else:
+			Globals.failType = "OverHeat"
+			Globals.playerFailed = 2
+			get_tree().call_group("BGLights","blackout")
+			get_tree().call_group("Player","blackout", player)
 	
 
 
