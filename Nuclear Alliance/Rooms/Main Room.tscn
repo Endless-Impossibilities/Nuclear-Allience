@@ -101,6 +101,7 @@ shape = SubResource( 1 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Music Player" groups=["Music"]]
 stream = ExtResource( 9 )
+volume_db = -10.0
 autoplay = true
 script = ExtResource( 8 )
 
