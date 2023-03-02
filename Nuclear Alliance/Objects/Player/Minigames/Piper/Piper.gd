@@ -24,7 +24,7 @@ var lastPipeSelected = 0
 var maxTime = 15.0*60.0
 var timeLeft = 15.0*60.0
 
-var startDelay = 60
+var startDelay = 10
 
 
 var tape = preload("res://Objects/Player/Minigames/Piper/Tape.tscn")
@@ -56,7 +56,7 @@ func _physics_process(delta):
 	
 	if running && gameState == "Idle":
 		if startDelay <= 0:
-			startDelay = 60
+			startDelay = 15
 			gameState = "Select"
 		else:
 			startDelay -= 1
