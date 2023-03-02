@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Objects/Player/Minigames/Piper/Piper.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Player/Minigames/Piper/TapeRoll.png" type="Texture" id=2]
@@ -6,13 +6,16 @@
 [ext_resource path="res://Objects/Player/Minigames/Piper/Pipes/Off/4.png" type="Texture" id=4]
 [ext_resource path="res://Objects/Player/Minigames/Piper/Pipes/On/4.png" type="Texture" id=5]
 [ext_resource path="res://Objects/Player/Minigames/Piper/Pipes/On/3.png" type="Texture" id=6]
+[ext_resource path="res://Sounds/PunctureIntro.wav" type="AudioStream" id=7]
 [ext_resource path="res://Objects/Letters/Letter.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Objects/Player/Minigames/Piper/Pipes/On/1.png" type="Texture" id=9]
 [ext_resource path="res://Objects/Player/Minigames/Piper/Pipes/Off/1.png" type="Texture" id=10]
 [ext_resource path="res://Objects/Player/Minigames/Piper/Pipes/Off/2.png" type="Texture" id=11]
 [ext_resource path="res://Objects/Player/Minigames/Piper/Pipes/Off/3.png" type="Texture" id=12]
 [ext_resource path="res://Objects/Player/Minigames/Piper/Pipes/On/2.png" type="Texture" id=13]
+[ext_resource path="res://Sounds/SodderFix.wav" type="AudioStream" id=14]
 [ext_resource path="res://Objects/Player/Minigames/Piper/Puncture.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Sounds/PunctureSustain.wav" type="AudioStream" id=16]
 
 [sub_resource type="SpriteFrames" id=6]
 animations = [ {
@@ -169,5 +172,25 @@ position = Vector2( 0, -100 )
 [node name="Puncture5" parent="Punctures" instance=ExtResource( 15 )]
 position = Vector2( 0, -100 )
 
+[node name="SFX" type="Node" parent="."]
+
+[node name="Intro" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource( 7 )
+volume_db = -80.0
+
+[node name="Sustain" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource( 16 )
+volume_db = -80.0
+
+[node name="Fix" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource( 14 )
+volume_db = -80.0
+
+[node name="Intro2" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource( 7 )
+volume_db = -80.0
+
 [connection signal="area_entered" from="Cursor/Area2D" to="Cursor" method="_on_Area2D_area_entered"]
 [connection signal="area_exited" from="Cursor/Area2D" to="Cursor" method="_on_Area2D_area_exited"]
+[connection signal="finished" from="SFX/Intro" to="." method="_on_Intro_finished"]
+[connection signal="finished" from="SFX/Intro2" to="." method="_on_Intro2_finished"]

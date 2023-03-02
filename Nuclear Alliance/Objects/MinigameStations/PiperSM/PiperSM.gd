@@ -12,7 +12,7 @@ var playerClose = false
 
 var numPunctures = 0
 
-var currentPuncture = 0
+var currentPunctures = 0
 
 var miniPuncture = preload("res://Objects/MinigameStations/PiperSM/MiniPuncture.tscn")
 
@@ -21,23 +21,27 @@ var miniPuncture = preload("res://Objects/MinigameStations/PiperSM/MiniPuncture.
 #Highlights the station's sprite if it is broken and the player is nearby
 func _on_Area2D_body_entered(body):
 	playerClose = true
-	if broken == true && active == false:
-		$AnimatedSprite.play("Hovered")
-		get_tree().call_group("Player","Play",4,player)
+
+
 
 func _physics_process(_delta):
-	if playerClose:
-		if broken == true && active == false:
-			$AnimatedSprite.play("Hovered")
-			get_tree().call_group("Player","Play",4,player)
-		else:
-			get_tree().call_group("Player","Play",0,player)
-			$AnimatedSprite.play("Idle")
-
+	
+	if player == 1:
+		Globals.Punc1 = currentPunctures
+	else:
+		Globals.Punc2 = currentPunctures
+	
+	
+	if playerClose && broken && !active:
+		$AnimatedSprite.play("Hovered")
+		get_tree().call_group("Player","playerMinigame",4,player)
+	else:
+		$AnimatedSprite.play("Idle")
 
 func _on_Area2D_body_exited(body):
 	playerClose = false
-	get_tree().call_group("Player","Play",0, player)
+	$AnimatedSprite.play("Hovered")
+	get_tree().call_group("Player","playerMinigame",0,player)
 
 #Makes it so the player can't activate the game by marking it as active
 func Running():
@@ -49,6 +53,7 @@ func End(callingPlayer):
 		active = false
 		broken = false
 		$Timer.start()
+		currentPunctures = 0
 		for i in range(numPunctures):
 			get_node("miniPuncture" + str(i)).Fix()
 
@@ -60,5 +65,6 @@ func addPuncture(callingGame,x,y):
 		instance.position = Vector2(x*0.61,(y*0.61) + 12)
 		instance.name = "miniPuncture" + str(numPunctures)
 		numPunctures += 1
+		currentPunctures += 1
 
 

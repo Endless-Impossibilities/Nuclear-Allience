@@ -10,6 +10,12 @@ var power = true
 var water = 0.0
 var maxWater = Globals.MaxWtr
 var pressure = true
+var punctures = 0
+
+
+# Needle position
+var needlePos = 0
+var needleDirection = "Down"
 
 #Variables for random movement for power#
 
@@ -24,6 +30,7 @@ var powRng = RandomNumberGenerator.new()
 #Variable for which player this is attached to#
 export var player = 0
 
+onready var pressureNeedle = get_node("Pressure/Pressure")
 
 var waterPercentage = 0.0
 
@@ -35,11 +42,32 @@ func _physics_process(delta):
 ## Updates weather minigame stations are ready ##
 	if player == 1:
 		water = Globals.Wtr1
+		punctures = Globals.Punc1
 
 	if player == 2:
 		water = Globals.Wtr2
+		punctures = Globals.Punc2
 
-		
+##Ensures that the Pressure gauge is rotating the right way
+	if pressureNeedle.rotation_degrees <= 0:
+		pressureNeedle.offset.x = -13
+		pressureNeedle.position.x = 121
+	else:
+		pressureNeedle.offset.x = -14
+		pressureNeedle.position.x = 122
+	
+	needlePos = (punctures * 23) - 70
+	
+	if needleDirection == "Down":
+		pressureNeedle.rotation_degrees -= 4
+	if needleDirection == "Up":
+		pressureNeedle.rotation_degrees += 4
+	if pressureNeedle.rotation_degrees >= needlePos + 8:
+		needleDirection = "Down"
+	if pressureNeedle.rotation_degrees <= needlePos - 8:
+		needleDirection = "Up"
+	
+
 ## Updates hud elements for powerbox ## 
 	# Update bar 1 #
 	if power == true:

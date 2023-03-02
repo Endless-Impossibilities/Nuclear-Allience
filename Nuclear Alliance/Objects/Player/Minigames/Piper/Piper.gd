@@ -31,15 +31,19 @@ var tape = preload("res://Objects/Player/Minigames/Piper/Tape.tscn")
 
 ### Makes sure the minigame is ready ###
 func _ready():
-	timeLeft += rand_range(0.5*60,-0.5*60)
 	self.position = Vector2(1000,1000)
 	randomize()
+	timeLeft += rand_range(0.5*60,-0.5*60)
 	puncturePositions[1] = 0
+	
+	$SFX/Intro.volume_db = -30
+	$SFX/Intro2.volume_db = -30
+	$SFX/Sustain.volume_db = -30
+	$SFX/Fix.volume_db = -10
 
 
 
 func _physics_process(delta):
-	
 #Timer for new Punctures
 	if timeLeft <= 0:
 		maxTime -= 0.5*60 + rand_range(0.5*60,-0.5*60)
@@ -133,6 +137,7 @@ func _physics_process(delta):
 
 	
 	### Game Loop ###
+
 func Game(Game, callingPlayer):
 
 ## Makes sure that it is the minigame being requested ##
@@ -153,6 +158,10 @@ func Game(Game, callingPlayer):
  
 ### Ends the minigame ###
 func Quit(PunctureX,PunctureY):
+	$SFX/Intro.volume_db -= 5
+	$SFX/Sustain.volume_db -= 5
+	$SFX/Fix.play()
+	
 	var instance = tape.instance()
 	instance.position = Vector2(PunctureX,PunctureY)
 	add_child(instance)
@@ -160,14 +169,19 @@ func Quit(PunctureX,PunctureY):
 	
 
 ## Resets minigame ##
-
 	if totalActivePunctures >= 2:
-		print("continue")
 		$Cursor.active = false
 		selectedPipe = 1
 		pipeState = [1,0,0,0]
 		gameState = "Idle"
+
 	else:
+		$SFX/Intro.stop()
+		$SFX/Intro2.stop()
+		$SFX/Sustain.stop()
+		$SFX/Intro.volume_db = -30
+		$SFX/Intro2.volume_db = -30
+		$SFX/Sustain.volume_db = -30
 		running = false
 		self.position = Vector2(1000,1000)
 		$Cursor.active = false
@@ -177,7 +191,7 @@ func Quit(PunctureX,PunctureY):
 		gameState = "Idle"
 	## Tells the player to unlock movement ##
 		get_tree().call_group("Player","Quit",attachedPlayer)
-	
+		get_tree().call_group("Player","playerMinigame",0,attachedPlayer)
 	## Tells the station to "Fix" it's self and get ready for the next play ##
 		get_tree().call_group("PiperSM","End",attachedPlayer)
 			
@@ -186,14 +200,46 @@ func Quit(PunctureX,PunctureY):
 
 
 func Break():
-	for i in range(5):
-		if punctureState[i] == 0:
-			var Puncture = get_node("Punctures/Puncture" + str(i + 1))
-			Puncture.position = Vector2(rand_range(1,71),rand_range(13,52))
-			Puncture.Active = true
-			puncturePositions[ (Puncture.position.x) / 18 ] += 1
-			punctureState[i] = 1
-			get_tree().call_group("PiperSM","addPuncture",attachedPlayer,Puncture.position.x,Puncture.position.y)
-			break
+	if !$SFX/Intro.playing:
+		$SFX/Intro.play()
+
+	else:
+		$SFX/Intro2.play()
+	$SFX/Intro.volume_db += 5
+	$SFX/Intro2.volume_db += 5
+	
+	if totalActivePunctures == 5:
+		Globals.failType = "PressureMax"
+		Globals.playerFailed = attachedPlayer
+		get_tree().call_group("BGLights","blackout")
+		get_tree().call_group("Player","blackout", attachedPlayer)
+	
+	else:
+		for i in range(5):
+			if punctureState[i] == 0:
+				randomize()
+				var Puncture = get_node("Punctures/Puncture" + str(i + 1))
+				Puncture.position = Vector2(rand_range(1,71),rand_range(13,52))
+				Puncture.Active = true
+				puncturePositions[ (Puncture.position.x) / 18 ] += 1
+				punctureState[i] = 1
+				get_tree().call_group("PiperSM","addPuncture",attachedPlayer,Puncture.position.x,Puncture.position.y)
+				break
 
 
+func sabotage(callingPlayer):
+	if callingPlayer != attachedPlayer:
+		Break()
+
+func _on_Intro_finished():
+	if $SFX/Sustain.playing == false:
+		$SFX/Sustain.play()
+	else:
+		$SFX/Sustain.volume_db += 5
+
+
+func _on_Intro2_finished():
+	if $SFX/Sustain.playing == false:
+		$SFX/Sustain.play()
+	else:
+		$SFX/Sustain.volume_db += 5

@@ -152,8 +152,8 @@
 [ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy37.png" type="Texture" id=150]
 [ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy38.png" type="Texture" id=151]
 [ext_resource path="res://Objects/Player/PressureBoy/PlayerPBoy33.png" type="Texture" id=152]
-[ext_resource path="res://Sounds/Step.mp3" type="AudioStream" id=153]
 [ext_resource path="res://Objects/Player/Minigames/Piper/Piper.tscn" type="PackedScene" id=154]
+[ext_resource path="res://Objects/Player/BlackoutOverlay.png" type="Texture" id=155]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 8, 16 )
@@ -215,9 +215,13 @@ position = Vector2( -35, -32 )
 [node name="Listener2D" type="Listener2D" parent="."]
 current = true
 
-[node name="StepSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 153 )
-volume_db = -17.0
-pitch_scale = 1.5
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="Sprite2" type="Sprite" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0.352941 )
+texture = ExtResource( 155 )
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_Sprite_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

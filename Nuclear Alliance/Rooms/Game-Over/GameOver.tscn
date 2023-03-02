@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://Rooms/Game-Over/Overheat/P2/Overheat3.png" type="Texture" id=1]
 [ext_resource path="res://Rooms/Game-Over/PowerFail/P2/PowerFail4.png" type="Texture" id=2]
@@ -38,6 +38,8 @@
 [ext_resource path="res://Rooms/Game-Over/GameOver.gd" type="Script" id=36]
 [ext_resource path="res://Sounds/Overheat.wav" type="AudioStream" id=37]
 [ext_resource path="res://Sounds/Powerout.wav" type="AudioStream" id=38]
+[ext_resource path="res://Sounds/Burst.wav" type="AudioStream" id=39]
+[ext_resource path="res://Objects/MinigameStations/PiperSM/MiniParticles.tscn" type="PackedScene" id=40]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -106,8 +108,7 @@ animation = "PressureMax"
 visible = false
 position = Vector2( 80, 60 )
 frames = SubResource( 2 )
-animation = "PowerFail"
-frame = 1
+animation = "PressureMax"
 
 [node name="TextureButton" type="TextureButton" parent="ViewportContainer/Viewport/Node2D"]
 margin_left = 148.0
@@ -146,4 +147,58 @@ stream = ExtResource( 37 )
 [node name="PowerFail" type="AudioStreamPlayer" parent="ViewportContainer/Viewport/Node2D"]
 stream = ExtResource( 38 )
 
+[node name="CanvasModulate" type="CanvasModulate" parent="ViewportContainer/Viewport/Node2D"]
+color = Color( 0, 0, 0, 1 )
+
+[node name="PressureMax" type="AudioStreamPlayer" parent="ViewportContainer/Viewport/Node2D"]
+stream = ExtResource( 39 )
+
+[node name="Timer" type="Timer" parent="ViewportContainer/Viewport/Node2D"]
+wait_time = 0.001
+
+[node name="Burst1" parent="ViewportContainer/Viewport/Node2D/Timer" instance=ExtResource( 40 )]
+position = Vector2( 43, 103 )
+emitting = false
+speed_scale = 3.0
+emission_sphere_radius = 0.01
+direction = Vector2( 0, 0 )
+gravity = Vector2( -30, -20 )
+initial_velocity_random = 0.0
+linear_accel = -7.41
+radial_accel = 30.0
+
+[node name="Burst2" parent="ViewportContainer/Viewport/Node2D/Timer" instance=ExtResource( 40 )]
+position = Vector2( 98, 96 )
+emitting = false
+speed_scale = 3.0
+emission_sphere_radius = 0.01
+direction = Vector2( 0, 0 )
+gravity = Vector2( -15, -50 )
+initial_velocity_random = 0.0
+linear_accel = -7.41
+radial_accel = 30.0
+
+[node name="Burst3" parent="ViewportContainer/Viewport/Node2D/Timer" instance=ExtResource( 40 )]
+position = Vector2( 119, 113 )
+emitting = false
+speed_scale = 3.0
+emission_sphere_radius = 0.01
+direction = Vector2( 0, 0 )
+gravity = Vector2( 30, 10 )
+initial_velocity_random = 0.0
+linear_accel = -7.0
+radial_accel = 30.0
+
+[node name="Burst4" parent="ViewportContainer/Viewport/Node2D/Timer" instance=ExtResource( 40 )]
+position = Vector2( 71, 93 )
+emitting = false
+speed_scale = 3.0
+emission_sphere_radius = 0.01
+direction = Vector2( 0, 0 )
+gravity = Vector2( 5, -40 )
+initial_velocity_random = 0.0
+linear_accel = -7.41
+radial_accel = 30.0
+
 [connection signal="pressed" from="ViewportContainer/Viewport/Node2D/TextureButton" to="ViewportContainer/Viewport/Node2D" method="_on_TextureButton_pressed"]
+[connection signal="timeout" from="ViewportContainer/Viewport/Node2D/Timer" to="ViewportContainer/Viewport/Node2D" method="_on_Timer_timeout"]

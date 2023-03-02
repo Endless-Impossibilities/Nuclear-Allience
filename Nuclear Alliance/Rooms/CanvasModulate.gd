@@ -13,6 +13,10 @@ func _lights(flashing):
 	self.color.r8 = flashing / 2 + rgb
 	self.color.g8 = flashing / 2 + rgb
 	self.color.b8 = flashing / 2 + rgb
+	if self.color.b8 == -1:
+		get_tree().change_scene("res://Rooms/Game-Over/GameOver.tscn")
+
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

@@ -44,17 +44,22 @@ func _physics_process(delta):
 		$"Letter Icons/Right".play("On")
 		
 	if $Meter/MeterControl.position.y > $Meter/MeterMarker.position.y && $Meter/MeterControl.position.y < $Meter/MeterMarker.position.y +10:
+		$Audio/Noise.volume_db = lerp($Audio/Noise.volume_db,-5,1)
+		
 		if attachedPlayer == 1:
 			Globals.Wtr1 += Globals.MaxWtr * 0.004
+			$Audio/Noise.pitch_scale = lerp($Audio/Noise.pitch_scale,(Globals.Wtr1/Globals.MaxWtr)/2,0.5)
 			if Globals.Wtr1 >= Globals.MaxWtr:
 				Globals.Wtr1 = Globals.MaxWtr
 				Quit()
 		if attachedPlayer == 2:
+			$Audio/Noise.pitch_scale = lerp($Audio/Noise.pitch_scale,(Globals.Wtr2/Globals.MaxWtr)/2,0.5)
 			Globals.Wtr2 += Globals.MaxWtr * 0.004
 			if Globals.Wtr2 >= Globals.MaxWtr:
 				Globals.Wtr2 = Globals.MaxWtr
 				Quit()
-
+	else:
+		$Audio/Noise.volume_db = -80
 	
 	if attachedPlayer == 1:
 		$Plate/TextureRect.rect_scale.y = Globals.Wtr1 / Globals.MaxWtr
@@ -92,6 +97,7 @@ func Quit():
 
 ## Tells the player to unlock movement ##
 	get_tree().call_group("Player","Quit",attachedPlayer)
+	get_tree().call_group("Player","playerMinigame",0,attachedPlayer)
 
 ## Tells the station to "Fix" it's self and get ready for the next play ##
 	get_tree().call_group("WtrPmpSM","End",attachedPlayer)

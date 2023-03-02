@@ -60,10 +60,10 @@ func Quit():
 
 ## Tells the player to unlock movement ##
 	get_tree().call_group("Player","Quit",attachedPlayer)
+	get_tree().call_group("Player","playerMinigame",0,attachedPlayer)
 
 ## Tells the station to "Fix" it's self and get ready for the next play ##
 	get_tree().call_group("PwrBxSM","End",attachedPlayer)
-		
 
 ### Handels breaks being fixed ###
 func Fix():

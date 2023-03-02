@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/Burst.wav-123d09ca907ef573112d3ef1ebcf125d.sample"
+path="res://.import/PunctureIntro.wav-da60ebac599541abf8c209037afb01a5.sample"
 
 [deps]
 
-source_file="res://Sounds/Burst.wav"
-dest_files=[ "res://.import/Burst.wav-123d09ca907ef573112d3ef1ebcf125d.sample" ]
+source_file="res://Sounds/PunctureIntro.wav"
+dest_files=[ "res://.import/PunctureIntro.wav-da60ebac599541abf8c209037afb01a5.sample" ]
 
 [params]
 

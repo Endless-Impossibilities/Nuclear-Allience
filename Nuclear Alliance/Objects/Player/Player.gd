@@ -23,6 +23,11 @@ var followCam : Camera2D
 #Which minigame the player is in interat range if any
 var gameHovered = 0
 
+var dying = false
+
+var noControl = false
+
+
 ### Gets the player ready ###
 func _ready():
 
@@ -48,6 +53,14 @@ func _ready():
 
 ### Everything that happens on a every-frame basis ###
 func _physics_process(_delta):
+	
+	
+	if noControl == true:
+		Input.action_release("Left" + str(player))
+		Input.action_release("Right" + str(player))
+		Input.action_release("Up" + str(player))
+		Input.action_release("Down" + str(player))
+		Input.action_release("Interact" + str(player))
 
 ## Detects keystrokes for movement and flips the player sprite & collision accordingly ##
 	if gameMode == false:
@@ -99,17 +112,12 @@ func _physics_process(_delta):
 			gameHovered = 0
 			gameMode = true
 	
-	## Plays Step Sound effect
 	
-	if $Sprite.animation == "Walk":
-		if $Sprite.frame == 0 or $Sprite.frame == 5:
-			if stepping == false:
-				$StepSound.play()
 
 
 
 ### Gets what minigame is currently in interact range of the player if any ###
-func Play(connectingGame, connectingGamePlayer):
+func playerMinigame(connectingGame, connectingGamePlayer):
 	if connectingGamePlayer == player:
 		gameHovered = connectingGame
 
@@ -133,9 +141,30 @@ func _on_Sprite_animation_finished():
 			get_tree().call_group("BackDrop","Animate","HeatRay",player)
 		if $Sprite.animation == "Tazer":
 			get_tree().call_group("PwrBxSM","overload",player)
-
+		if $Sprite.animation == "PBoy":
+			get_tree().call_group("Pipes","sabotage",player)
 			
 		$Sprite.play("Stand")
 		gameMode = false
 		$Sprite.position = Vector2(0,0)
+		
 
+func blackout(callingStation):
+	gameMode = true
+	noControl = true
+	
+	if callingStation == player && !dying:
+		get_tree().call_group("Music","blackout")
+		dying = true
+		$Timer.start()
+
+
+
+func _on_Timer_timeout():
+	$Timer.stop()
+	$Timer.start()
+	if $Sprite2.visible == true:
+		$Sprite2.visible = false
+	else:
+		$Sprite2.visible = true
+	

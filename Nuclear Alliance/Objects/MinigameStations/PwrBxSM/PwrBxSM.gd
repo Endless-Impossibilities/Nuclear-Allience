@@ -36,7 +36,7 @@ func _on_Area2D_body_entered(_body):
 #tells said player that they are no longer near this station
 func _on_Area2D_body_exited(_body):
 	hovered = false
-	get_tree().call_group("Player","Play",0, player)
+	get_tree().call_group("Player","playerMinigame",0, player)
 
 #Makes it so the player can't activate the game by marking it as active
 func Running():
@@ -59,7 +59,7 @@ func _physics_process(_delta):
 	#Highlights sprite when broken and a player is nearby
 	if broken && !active && hovered && !overloading:
 			$AnimatedSprite.play("Hovered")
-			get_tree().call_group("Player","Play",1,player)
+			get_tree().call_group("Player","playerMinigame",1,player)
 	
 	#Other sprite states
 	if (!overloading && !hovered) or (!overloading && !broken):
@@ -68,7 +68,7 @@ func _physics_process(_delta):
 			$AudioStreamPlayer.volume_db = -80
 		if broken == true:
 			$AnimatedSprite.play("Broken")
-			$AudioStreamPlayer.volume_db = -5
+			$AudioStreamPlayer.volume_db = -20
 			
 	#Updates hud and counts time before game over
 	if broken == true:
@@ -86,8 +86,9 @@ func _physics_process(_delta):
 	if gameOverTimer <= 0:
 		Globals.failType = "PowerFail"
 		Globals.playerFailed = player
-		get_tree().change_scene("res://Rooms/Game-Over/GameOver.tscn")
-	
+		get_tree().call_group("BGLights","blackout")
+		get_tree().call_group("Player","blackout", player)
+		
 	#Disables breaking timer when player is fixing it
 	if active == true:
 		$Timer.time_left = timerLength
@@ -104,7 +105,6 @@ func _on_Timer_timeout():
 
 #Handels this station being sabotaged
 func overload(callingPlayer):
-	print("here")
 	if callingPlayer != player:
 		overloading = true
 		$AnimatedSprite.play("Overload")

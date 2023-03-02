@@ -7,6 +7,8 @@ var PumpFix1 = 0
 var PumpFix2 = 0
 var WtrFix1 = 0
 var WtrFix2 = 0
+var Punc1 = 0
+var Punc2 = 0
 
 var failType = "None"
 var playerFailed = 0

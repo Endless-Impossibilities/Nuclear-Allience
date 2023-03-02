@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Objects/Player/Minigames/WtrPmp/WtrPmp.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Player/Minigames/WtrPmp/WtrPmpFront.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Objects/Player/Minigames/WtrPmp/WtrPmpBorder.png" type="Texture" id=9]
 [ext_resource path="res://Objects/Letters/On/LettersOn1.png" type="Texture" id=10]
 [ext_resource path="res://Objects/Letters/Off/LettersOff1.png" type="Texture" id=11]
+[ext_resource path="res://Sounds/PunctureSustain.wav" type="AudioStream" id=12]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -111,3 +112,10 @@ custom_fonts/font = ExtResource( 8 )
 text = "w"
 valign = 1
 uppercase = true
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="Noise" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 12 )
+volume_db = -80.0
+autoplay = true

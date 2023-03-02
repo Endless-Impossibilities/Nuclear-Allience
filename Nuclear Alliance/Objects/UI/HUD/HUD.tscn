@@ -108,10 +108,10 @@ position = Vector2( 120, 49 )
 texture = ExtResource( 8 )
 
 [node name="Pressure" type="Sprite" parent="Pressure"]
-position = Vector2( 122, 57 )
+position = Vector2( 121, 57 )
 texture = ExtResource( 9 )
 centered = false
-offset = Vector2( -13.5, -36.5 )
+offset = Vector2( -13, -36.5 )
 
 [node name="Sabotage" type="Node2D" parent="."]
 

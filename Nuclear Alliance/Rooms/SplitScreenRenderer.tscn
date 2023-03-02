@@ -31,6 +31,7 @@ stretch = true
 
 [node name="viewport1" type="Viewport" parent="GridContainer/container1"]
 size = Vector2( 160, 58 )
+transparent_bg = true
 handle_input_locally = false
 usage = 0
 render_target_update_mode = 3

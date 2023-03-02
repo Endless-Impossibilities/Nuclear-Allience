@@ -70,6 +70,7 @@ func Quit(callingPlayer):
 		$Cursor.active = false
 		$Cursor.position = Vector2(30,0)
 		active = false
+		get_tree().call_group("Player","playerMinigame",0,attachedPlayer)
 		
 #Tells the cursor what it is hovering over#
 func Hover(hovered):
