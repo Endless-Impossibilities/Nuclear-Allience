@@ -25,6 +25,7 @@ func _physics_process(delta):
 				$"..".Quit(Collider.position.x,Collider.position.y)
 				self.position = Vector2(2,17)
 				Collider.Return()
+				
 		move_and_collide(Velocity)
 		
 

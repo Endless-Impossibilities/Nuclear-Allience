@@ -18,12 +18,13 @@ var punctureState = [0,0,0,0,0]
 var gameState = "Idle"
 var puncturePositions = [0,0,0,0]
 var totalActivePunctures = 0
+var lastPipeSelected = 0
 
 #Timer for new Breaks
 var maxTime = 15.0*60.0
 var timeLeft = 15.0*60.0
 
-var startDelay = 15
+var startDelay = 60
 
 
 var tape = preload("res://Objects/Player/Minigames/Piper/Tape.tscn")
@@ -34,7 +35,7 @@ func _ready():
 	self.position = Vector2(1000,1000)
 	randomize()
 	timeLeft += rand_range(0.5*60,-0.5*60)
-	puncturePositions[1] = 0
+	puncturePositions = [0,0,0,0]
 	
 	$SFX/Intro.volume_db = -30
 	$SFX/Intro2.volume_db = -30
@@ -44,6 +45,8 @@ func _ready():
 
 
 func _physics_process(delta):
+	print(puncturePositions)
+	print(lastPipeSelected)
 #Timer for new Punctures
 	if timeLeft <= 0:
 		maxTime -= 0.5*60 + rand_range(0.5*60,-0.5*60)
@@ -53,7 +56,7 @@ func _physics_process(delta):
 	
 	if running && gameState == "Idle":
 		if startDelay <= 0:
-			startDelay = 15
+			startDelay = 60
 			gameState = "Select"
 		else:
 			startDelay -= 1
@@ -108,6 +111,7 @@ func _physics_process(delta):
 				if puncturePositions[selectedPipe - 1] >= 1:
 						$Cursor.active = true
 						gameState = "Play"
+						lastPipeSelected = selectedPipe
 
 
 
@@ -162,6 +166,9 @@ func Quit(PunctureX,PunctureY):
 	$SFX/Sustain.volume_db -= 5
 	$SFX/Fix.play()
 	
+	puncturePositions[lastPipeSelected - 1] -= 1
+	
+	
 	var instance = tape.instance()
 	instance.position = Vector2(PunctureX,PunctureY)
 	add_child(instance)
@@ -207,6 +214,7 @@ func Break():
 		$SFX/Intro2.play()
 	$SFX/Intro.volume_db += 5
 	$SFX/Intro2.volume_db += 5
+	
 	
 	if totalActivePunctures == 5:
 		Globals.failType = "PressureMax"
