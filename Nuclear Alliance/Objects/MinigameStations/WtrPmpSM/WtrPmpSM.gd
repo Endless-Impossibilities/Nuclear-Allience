@@ -79,7 +79,7 @@ func _physics_process(_delta):
 				if overHeat <= 0:
 					Globals.Wtr1 -= 1
 			if overHeat > 0:
-				Globals.Wtr1 -= 3
+				Globals.Wtr1 -= 2
 				overHeat -= 1
 			if Globals.Wtr1 < Globals.MaxWtr *.75 && active == false:
 				broken = true
@@ -95,7 +95,7 @@ func _physics_process(_delta):
 				if overHeat <= 0:
 					Globals.Wtr2 -= 1
 			if overHeat > 0:
-				Globals.Wtr2 -= 3
+				Globals.Wtr2 -= 2
 				overHeat -= 1
 			if Globals.Wtr2 < Globals.MaxWtr *.75 && active == false:
 				broken = true
