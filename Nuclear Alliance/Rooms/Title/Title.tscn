@@ -4,8 +4,8 @@
 [ext_resource path="res://Rooms/Title/Play-Off.png" type="Texture" id=2]
 [ext_resource path="res://Rooms/Title/Back.png" type="Texture" id=3]
 [ext_resource path="res://Rooms/Title/Tutorial-On.png" type="Texture" id=4]
-[ext_resource path="res://Rooms/Title/Settings-Off.png" type="Texture" id=5]
-[ext_resource path="res://Rooms/Title/Settings-On.png" type="Texture" id=6]
+[ext_resource path="res://Rooms/Title/Tools-On.png" type="Texture" id=5]
+[ext_resource path="res://Rooms/Title/Tools-Off.png" type="Texture" id=6]
 [ext_resource path="res://Rooms/Title/Tutorial-Off.png" type="Texture" id=7]
 [ext_resource path="res://Rooms/Title/Play.gd" type="Script" id=8]
 
@@ -47,16 +47,16 @@ destination = "res://Rooms/Tutorial/Tutorial.tscn"
 margin_left = 34.0
 margin_top = 96.0
 margin_right = 126.0
-margin_bottom = 120.0
+margin_bottom = 118.0
 rect_clip_content = true
-disabled = true
-texture_normal = ExtResource( 5 )
-texture_pressed = ExtResource( 6 )
-texture_hover = ExtResource( 6 )
-texture_disabled = ExtResource( 6 )
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 5 )
+texture_disabled = ExtResource( 5 )
 expand = true
 stretch_mode = 2
 script = ExtResource( 8 )
+destination = "res://Rooms/Tools/Tools.tscn"
 
 [connection signal="pressed" from="Play" to="Play" method="_on_Play_pressed"]
 [connection signal="pressed" from="Play2" to="Play2" method="_on_Play_pressed"]
