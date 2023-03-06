@@ -22,7 +22,7 @@ var lastPipeSelected = 0
 
 #Timer for new Breaks
 var maxTime = 15.0*60.0
-var timeLeft = 15.0*60.0
+var timeLeft = 20.0*60.0
 
 var startDelay = 10
 
@@ -49,7 +49,7 @@ func _physics_process(delta):
 	print(lastPipeSelected)
 #Timer for new Punctures
 	if timeLeft <= 0:
-		maxTime -= 0.5*60 + rand_range(0.5*60,-0.5*60)
+		maxTime -= 0.25*60 + rand_range(0.25*60,-0.25*60)
 		timeLeft = maxTime
 		Break()
 	timeLeft -= 1
