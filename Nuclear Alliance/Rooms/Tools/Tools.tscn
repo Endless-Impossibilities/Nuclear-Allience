@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Rooms/Tools/ToolsUsed.png" type="Texture" id=1]
+[ext_resource path="res://Rooms/Tools/Tools.gd" type="Script" id=2]
+[ext_resource path="res://Rooms/Tutorial/Buttons/Tutorial X1.png" type="Texture" id=3]
+[ext_resource path="res://Rooms/Tutorial/Buttons/Tutorial X2.png" type="Texture" id=4]
+
+[node name="Tools" type="Sprite"]
+position = Vector2( 80, 60 )
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="XButton" type="TextureButton" parent="."]
+margin_left = 69.0
+margin_top = -60.0
+margin_right = 80.0
+margin_bottom = -49.0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+texture_disabled = ExtResource( 3 )
+texture_focused = ExtResource( 3 )
+
+[connection signal="pressed" from="XButton" to="." method="_on_XButton_pressed"]
